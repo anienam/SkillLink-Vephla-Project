@@ -1,0 +1,115 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+:root {
+  --color-green: rgba(15, 166, 116);
+  --Light-background: rgba(249, 250, 251);
+  --color-faint: rgba(227, 242, 237);
+  --color-black: rgba(15, 28, 47);
+  --icon-color: rgba(31, 31, 31);
+  --white-color: rgba(255, 255, 255);
+  --color-red: rgba(239, 68, 68);
+  --color-pending: rgba(238, 217, 217);
+  --color-complete: rgba(210, 223, 243);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--white-color);
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f5f5;
+  margin: 0;
+  min-height: 100vh;
+  padding-block: 20px;
+}
+
+.card {
+  background: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  height: max-content;
+  width: 90%;
+  max-width: 924px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.icon {
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 20px;
+  color: white;
+  font-size: 40px;
+}
+
+.title {
+  font-size: 40px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #333;
+  height: 48px;
+}
+
+.message {
+  font-size: 32px;
+  color: #555;
+  margin-bottom: 25px;
+  font-weight: 500;
+}
+
+.btn {
+  width: 100%;
+  display: inline-block;
+  background: #28a745;
+  color: white;
+  padding: 18px 24px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+
+  margin: 0 auto;
+}
+
+.btn:hover {
+  background: #218838;
+}
+
+
+@media (max-width: 600px) {
+  .message {
+    font-size: 25px;
+  }
+}
+@media (max-width: 330px) {
+  .message {
+    font-size: 18px;
+  }
+  .btn {
+    padding: 10px;
+  }
+}
+

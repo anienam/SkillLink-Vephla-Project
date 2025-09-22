@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="sl-api-base" content="https://skill-link-gg2c.onrender.com/api" />
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+        <!-- Top Navigation Bar (Mobile) -->
+        <header class="topbar" role="banner">
+          <a class="brand" href="#">
+            <span class="brand-icon" aria-hidden="true">
+              <img
+                src="../Images/Logo/Frame 228.png"
+                alt="SkillLink logo"
+                class="logo-img"
+              />
+            </span>
+          </a>
+
+          <button
+            class="menu-btn"
+            aria-label="Open menu"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+          >
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M3 6h18M3 12h18M3 18h18"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+          </button>
+        </header>
+
+        <nav id="mobile-menu" class="mobile-drawer" hidden>
+          <a href="../index.html">Home</a>
+          <a href="../about.html">About</a>
+          <a href="../contact.html">Help</a>
+        </nav>
+
+        <div class="container">
+          <!-- Left: Login Form -->
+          <div class="left login-form">
+            <h2>Login</h2>
+            <p class="subtitle">please enter your login details to log in.</p>
+
+            <form id="login-form" novalidate>
+              <div id="login-msg" class="msg" hidden></div>
+              <input id="login-email" type="email" placeholder="Email" required />
+
+              <div class="password-row">
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="Enter your password" required
+                />
+                <span class="toggle-password" onclick="togglePassword()"
+                  >👁️</span
+                >
+              </div>
+
+              <div class="checkbox-row">
+                <label class="checkbox">
+                  <input id="keep-logged-in" type="checkbox" /> Keep me logged in
+                </label>
+                <a href="../Sign-In/reset.html" class="forgot">Forgot password?</a>
+              </div>
+
+              <button type="submit" class="btn">Log In</button>
+
+              <p class="switch-text">
+                Don't have an account? <a href="../Sign-Up/index.html">Create account</a>
+              </p>
+
+              <div class="divider">or continue with</div>
+
+              <div class="social-login">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="48"
+                  height="48"
+                  viewBox="0 0 48 48"
+                >
+                  <path
+                    fill="#ffc107"
+                    d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8c-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4C12.955 4 4 12.955 4 24s8.955 20 20 20s20-8.955 20-20c0-1.341-.138-2.65-.389-3.917"
+                  />
+                  <path
+                    fill="#ff3d00"
+                    d="m6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4C16.318 4 9.656 8.337 6.306 14.691"
+                  />
+                  <path
+                    fill="#4caf50"
+                    d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.9 11.9 0 0 1 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44"
+                  />
+                  <path
+                    fill="#1976d2"
+                    d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 0 1-4.087 5.571l.003-.002l6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917"
+                  />
+                </svg>
+                <button type="button">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="256"
+                    height="256"
+                    viewBox="0 0 256 256"
+                  >
+                    <path
+                      fill="#1877f2"
+                      d="M256 128C256 57.308 198.692 0 128 0S0 57.308 0 128c0 63.888 46.808 116.843 108 126.445V165H75.5v-37H108V99.8c0-32.08 19.11-49.8 48.348-49.8C170.352 50 185 52.5 185 52.5V84h-16.14C152.959 84 148 93.867 148 103.99V128h35.5l-5.675 37H148v89.445c61.192-9.602 108-62.556 108-126.445"
+                    />
+                    <path
+                      fill="#fff"
+                      d="m177.825 165l5.675-37H148v-24.01C148 93.866 152.959 84 168.86 84H185V52.5S170.352 50 156.347 50C127.11 50 108 67.72 108 99.8V128H75.5v37H108v89.445A129 129 0 0 0 128 256a129 129 0 0 0 20-1.555V165z"
+                    />
+                  </svg>
+                </button>
+                <button type="button">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="256"
+                    height="209"
+                    viewBox="0 0 256 209"
+                  >
+                    <path
+                      fill="#55acee"
+                      d="M256 25.45a105 105 0 0 1-30.166 8.27c10.845-6.5 19.172-16.793 23.093-29.057a105.2 105.2 0 0 1-33.351 12.745C205.995 7.201 192.346.822 177.239.822c-29.006 0-52.523 23.516-52.523 52.52c0 4.117.465 8.125 1.36 11.97c-43.65-2.191-82.35-23.1-108.255-54.876c-4.52 7.757-7.11 16.78-7.11 26.404c0 18.222 9.273 34.297 23.365 43.716a52.3 52.3 0 0 1-23.79-6.57q-.004.33-.003.661c0 25.447 18.104 46.675 42.13 51.5a52.6 52.6 0 0 1-23.718.9c6.683 20.866 26.08 36.05 49.062 36.475c-17.975 14.086-40.622 22.483-65.228 22.483c-4.24 0-8.42-.249-12.529-.734c23.243 14.902 50.85 23.597 80.51 23.597c96.607 0 149.434-80.031 149.434-149.435q0-3.417-.152-6.795A106.8 106.8 0 0 0 256 25.45"
+                    />
+                  </svg>
+                </button>
+                <button type="button">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="256"
+                    height="315"
+                    viewBox="0 0 256 315"
+                  >
+                    <path
+                      d="M213.803 167.03c.442 47.58 41.74 63.413 42.197 63.615c-.35 1.116-6.599 22.563-21.757 44.716c-13.104 19.153-26.705 38.235-48.13 38.63c-21.05.388-27.82-12.483-51.888-12.483c-24.061 0-31.582 12.088-51.51 12.871c-20.68.783-36.428-20.71-49.64-39.793c-27-39.033-47.633-110.3-19.928-158.406c13.763-23.89 38.36-39.017 65.056-39.405c20.307-.387 39.475 13.662 51.889 13.662c12.406 0 35.699-16.895 60.186-14.414c10.25.427 39.026 4.14 57.503 31.186c-1.49.923-34.335 20.044-33.978 59.822M174.24 50.199c10.98-13.29 18.369-31.79 16.353-50.199c-15.826.636-34.962 10.546-46.314 23.828c-10.173 11.763-19.082 30.589-16.678 48.633c17.64 1.365 35.66-8.964 46.64-22.262"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Right: Image -->
+          <div class="right login-image">
+            <h1>Welcome<br />back!</h1>
+          </div>
+        </div>
+  <script>
+      const btn = document.querySelector(".menu-btn");
+      const drawer = document.getElementById("mobile-menu");
+
+      if (btn && drawer) {
+        btn.addEventListener("click", () => {
+          const isOpen = btn.getAttribute("aria-expanded") === "true";
+          // toggle aria-expanded
+          btn.setAttribute("aria-expanded", String(!isOpen));
+          // toggle the hidden attribute (keeps semantic hidden behavior)
+          drawer.hidden = isOpen;
+          // toggle class for CSS animation (max-height/opacity)
+          drawer.classList.toggle("open", !isOpen);
+        });
+      }
+
+      function togglePassword() {
+        const passwordInput = document.getElementById("password");
+        const icon = document.querySelector(".toggle-password");
+        if (passwordInput.type === "password") {
+          passwordInput.type = "text";
+          icon.textContent = "🙈"; // change icon when visible
+        } else {
+          passwordInput.type = "password";
+          icon.textContent = "👁️"; // change icon when hidden
+        }
+      }
+    </script>
+  <script src="../scripts/auth.js"></script>
+  </body>
+</html>

@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillLink Client</title>
+    <meta name="sl-api-base" content="https://skill-link-gg2c.onrender.com/api">
+    <link rel="icon" type="image/x-icon" href="../Images/Logo/Logo.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <input type="radio" name="main-nav" id="tab-dashboard" checked>
+    <input type="radio" name="main-nav" id="tab-job">
+    <input type="radio" name="main-nav" id="tab-talent">
+    <input type="radio" name="main-nav" id="tab-projects">
+    <input type="radio" name="main-nav" id="tab-payments">
+    <input type="radio" name="main-nav" id="tab-reviews">
+    <input type="radio" name="main-nav" id="tab-help">
+    <input type="radio" name="main-nav" id="tab-logout">
+    <input type="radio" name="job-section" id="job-post" checked>
+    <input type="radio" name="job-section" id="active-job">
+    <input type="radio" name="pay-section" id="overview-page" checked>
+    <input type="radio" name="pay-section" id="history-page">
+    <input type="checkbox" name="rate-section" id="check-rate">
+    <input type="checkbox" name="rate-section" id="check-rate1">
+    <input type="checkbox" name="rate-section" id="check-rate2">
+    <input type="checkbox" name="rate-section" id="check-rate3">
+    <input type="checkbox" name="rate-section" id="check-rate4">
+    <input type="radio" name="review-section" id="review-page" checked>
+    <input type="radio" name="review-section" id="rev-history-page">
+    <input type="checkbox" name="small-menu" id="mobile-menu">
+
+    <!-- mobile header and nav-bar     -->
+    <div class="mob-section">
+        <div class="mob-head">
+            <div class="logo-mob">
+                <img src="../Images/Logo/Frame 228.png" alt="logo image" width="150">
+            </div>
+            <div class="bars">
+                <div class="account-tools">
+                    <div class="search">
+                        <input type="search" placeholder="search here.....">
+                        <p class="search-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11.5a7.5 7.5 0 1 1-15 0a7.5 7.5 0 0 1 15 0m-2.107 5.42l3.08 3.08"/></svg></p>
+                    </div>
+                    <div class="noti">
+                        <p class="noti-bell"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 19v-9a6 6 0 0 1 6-6v0a6 6 0 0 1 6 6v9M6 19h12M6 19H4m14 0h2m-9 3h2"/><circle cx="12" cy="3" r="1"/></g></svg></p>                            <p class="noti-dot"></p>
+                    </div>
+                    <label for="mobile-menu"></label>
+                </div>
+                <div class="mob-opt">
+                    <div class="mob-options">
+                        <label for="tab-dashboard">Dashboard</label>
+                        <label for="tab-job">Job Management</label>
+                        <label for="tab-talent">Talent Search</label>
+                        <label for="tab-projects">Project Management</label>
+                        <label for="tab-payments">Payments & Finance</label>
+                        <label for="tab-reviews">Reviews</label>
+                        <label for="tab-help">Help</label>
+                        <label for="tab-logout">Logout</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layout">
+        <header>
+            <div class="logo-section">
+                <img src="../Images/Logo/Frame 229.png" alt="logo" width="140">
+            </div>
+            <div class="nav-items">
+                <label for="tab-dashboard"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M13 9V3h8v6zM3 13V3h8v10zm10 8V11h8v10zM3 21v-6h8v6zm2-10h4V5H5zm10 8h4v-6h-4zm0-12h4V5h-4zM5 19h4v-2H5zm4-2"/></svg> Dashboard</label>
+                <label for="tab-job"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M4 22a8 8 0 1 1 16 0h-2a6 6 0 0 0-12 0zm8-9c-3.315 0-6-2.685-6-6s2.685-6 6-6s6 2.685 6 6s-2.685 6-6 6m0-2c2.21 0 4-1.79 4-4s-1.79-4-4-4s-4 1.79-4 4s1.79 4 4 4"/></svg>Job Management</label>
+                <label for="tab-talent"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M4 19V8h16v3.29c.72.22 1.4.54 2 .97V8c0-1.11-.89-2-2-2h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h7.68c-.3-.62-.5-1.29-.6-2zm6-15h4v2h-4z"/><path fill="currentColor" d="M18 13c-2.76 0-5 2.24-5 5s2.24 5 5 5s5-2.24 5-5s-2.24-5-5-5m1.65 7.35L17.5 18.2V15h1v2.79l1.85 1.85z"/></svg> Talent Search</label>
+                <label for="tab-projects"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M14 6V4h-4v2zM4 8v11h16V8zm16-2c1.11 0 2 .89 2 2v11c0 1.11-.89 2-2 2H4c-1.11 0-2-.89-2-2l.01-11c0-1.11.88-2 1.99-2h4V4c0-1.11.89-2 2-2h4c1.11 0 2 .89 2 2v2z"/></svg> Projects</label>
+                <label for="tab-payments"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M14 13q-1.25 0-2.125-.875T11 10t.875-2.125T14 7t2.125.875T17 10t-.875 2.125T14 13m-7 3q-.825 0-1.412-.587T5 14V6q0-.825.588-1.412T7 4h14q.825 0 1.413.588T23 6v8q0 .825-.587 1.413T21 16zm2-2h10q0-.825.588-1.412T21 12V8q-.825 0-1.412-.587T19 6H9q0 .825-.587 1.413T7 8v4q.825 0 1.413.588T9 14m11 6H3q-.825 0-1.412-.587T1 18V7h2v11h17zM7 14V6z"/></svg> Payments</label>
+                <label for="tab-reviews"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M9.075 14.25L12 12.475l2.925 1.775l-.775-3.325l2.6-2.25l-3.425-.275L12 5.25L10.675 8.4l-3.425.275l2.6 2.25zM2 22V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18H6zm3.15-6H20V4H4v13.125zM4 16V4z"/></svg> Reviews</label>
+                <label for="tab-help"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10m0-2a8 8 0 1 0 0-16a8 8 0 0 0 0 16m-1-5h2v2h-2zm2-1.645V14h-2v-1.5a1 1 0 0 1 1-1a1.5 1.5 0 1 0-1.471-1.794l-1.962-.393A3.501 3.501 0 1 1 13 13.355"/></svg> Help</label>
+                <label for="tab-logout"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h7v2H5v14h7v2zm11-4l-1.375-1.45l2.55-2.55H9v-2h8.175l-2.55-2.55L16 7l5 5z"/></svg> Logout</label>
+            </div>
+        </header>
+        <div class="content-page">
+            <!--for the dashboard page-->
+            <div class="section" id="dashboard">
+                <div class="content-page-header">
+                    <h2>Dashboard</h2>
+                    <div class="account-tools">
+                        <div class="search">
+                            <input type="search" placeholder="search here.....">
+                            <p class="search-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11.5a7.5 7.5 0 1 1-15 0a7.5 7.5 0 0 1 15 0m-2.107 5.42l3.08 3.08"/></svg></p>
+                        </div>
+                        <div class="noti">
+                            <p class="noti-bell"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 19v-9a6 6 0 0 1 6-6v0a6 6 0 0 1 6 6v9M6 19h12M6 19H4m14 0h2m-9 3h2"/><circle cx="12" cy="3" r="1"/></g></svg></p>
+                            <p class="noti-dot"></p>
+                        </div>
+                        <div class="account-info">
+                            <p class="profile-image"></p>
+                            <p class="account-name">Samuel JAGGY</p>
+                            <p class="drop-down"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M16.293 9.293L12 13.586L7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z"/></svg></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-page-details">
+                    <div class="dashboard-intro">
+                        <h2>Welcome, Samuel</h2>
+                        <div class="dashboard-button">
+                            <button class="but1">Post a Job</button>
+                            <button class="but2">Find a Talent</button>
+                        </div>
+                    </div>
+                    <div class="dashboard-grid">
+                        <div class="dashboard-grid-items dashboard-grid-items1">
+                            <p>4</p>
+                            <h2>Active Jobs</h2>
+                        </div>
+                        <div class="dashboard-grid-items dashboard-grid-items2">
+                            <p>2</p>
+                            <h2>Pending Action</h2>
+                        </div>
+                        <div class="dashboard-grid-items dashboard-grid-items3">
+                            <p>8</p>
+                            <h2>New Proposals</h2>
+                        </div>
+                        <div class="dashboard-grid-items dashboard-grid-items4">
+                            <p>3</p>
+                            <h2>Messages</h2>
+                        </div>
+                    </div>
+                    <div class="dash-body">
+                        <div class="dash dash1">
+                            <h2>Active Jobs</h2>
+                            <div class="dashboard-job">
+                                <div class="dashboard-job-items">
+                                    <p class="job-image"></p>
+                                    <div class="job-name">
+                                        <p>Plumber</p>
+                                        <p>Due: Aug 30, 2025</p>
+                                    </div>
+                                    <progress min="0" max="100" value="70"></progress>
+                                </div>
+                                <div class="dashboard-job-items">
+                                    <p class="job-image2"></p>
+                                    <div class="job-name">
+                                        <p>Plumber</p>
+                                        <p>Due: Aug 30, 2025</p>
+                                    </div>
+                                    <progress min="0" max="100" value="70"></progress>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dash dash2">
+                            <h2>Pending Action</h2>
+                            <div class="pend-act">
+                                <div class="pend-act-item">
+                                    <p class="pend-dot"></p>
+                                    <p>Approved Milestone</p>
+                                </div>
+                                <div class="pend-act-item">
+                                    <p class="pend-dot"></p>
+                                    <p>Released Payment</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dashboard-footer">
+                        <div class="dash-footer1">
+                            <h2>Pending Actions</h2>
+                            <div class="pend-act-item">
+                                    <p class="pend-dot"></p>
+                                    <p>Approved Milestone</p>
+                                </div>
+                                <div class="pend-act-item">
+                                    <p class="pend-dot"></p>
+                                    <p>Released Payment</p>
+                                </div>
+                        </div>
+                        <div class="dash-footer2">
+                            <h2>Recent Applications</h2>
+                            <div class="applicants-cont">
+                                <div class="applicant-items"></div>
+                                <div class="applicant-items"></div>
+                                <div class="applicant-items"></div>
+                                <div class="applicant-items"></div>
+                                <div class="applicant-items"></div>
+                            </div>
+                        </div>
+                     </div>
+                </div>
+            </div>
+            <!--for the job-management page-->
+            <div class="section" id="job">
+                <div class="content-page-header">
+                    <h2>Job Management</h2>
+                    <div class="account-tools">
+                        <div class="search">
+                            <input type="search" placeholder="search here.....">
+                            <p class="search-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11.5a7.5 7.5 0 1 1-15 0a7.5 7.5 0 0 1 15 0m-2.107 5.42l3.08 3.08"/></svg></p>
+                        </div>
+                        <div class="noti">
+                            <p class="noti-bell"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 19v-9a6 6 0 0 1 6-6v0a6 6 0 0 1 6 6v9M6 19h12M6 19H4m14 0h2m-9 3h2"/><circle cx="12" cy="3" r="1"/></g></svg></p>
+                            <p class="noti-dot"></p>
+                        </div>
+                        <div class="account-info">
+                            <p class="profile-image"></p>
+                            <p class="account-name">Samuel JAGGY</p>
+                            <p class="drop-down"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M16.293 9.293L12 13.586L7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z"/></svg></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-page-details">
+                    <div class="job-label">
+                        <label for="job-post">Post a Job</label>
+                        <label for="active-job">Active Jobs</label>
+                    </div>
+                    <div class="post-job-cont">
+                        <div class="post-job-item post-job-item1 section" id="jpage1">
+                            <div class="p-job">
+                                <form id="post-job-form">
+                                <div class="job-title">
+                                    <label for="job-title">Job Title</label>
+                                    <input type="text" id="job-title" name="job-title" required>
+                                </div>
+                                <div class="job-desc">
+                                    <label for="job-description">Description</label>
+                                    <textarea name="job-description" id="job-description" required></textarea>
+                                </div>
+                                <div class="job-budget">
+                                    <label for="job-budget-min">Budget Range</label>
+                                    <div class="budget-sliders">
+                                        <div class="slider-col">
+                                            <span class="slider-label">Min</span>
+                                            <input type="range" id="job-budget-min-range" min="0" max="100000" step="50" value="0" aria-label="Minimum budget">
+                                        </div>
+                                        <div class="slider-col">
+                                            <span class="slider-label">Max</span>
+                                            <input type="range" id="job-budget-max-range" min="0" max="100000" step="50" value="1000" aria-label="Maximum budget">
+                                        </div>
+                                    </div>
+                                    <div class="budget-inputs">
+                                        <input type="number" id="job-budget-min" name="job-budget-min" placeholder="Min" min="0" step="1" required>
+                                        <input type="number" id="job-budget-max" name="job-budget-max" placeholder="Max" min="0" step="1" required>
+                                    </div>
+                                    <p id="budget-preview" class="budget-preview" aria-live="polite"></p>
+                                </div>
+                                <div class="job-deadline">
+                                    <label for="job-deadline">Timeline/Deadline</label>
+                                    <input type="date" id="job-deadline" name="job-deadline" required>
+                                </div>
+                                <div class="job-skill">
+                                    <label for="job-skill">Required Skills</label>
+                                    <input type="text" id="job-skill" name="job-skill" placeholder="e.g. electrical, wiring, safety" required>
+                                </div>
+                                <div class="job-button">
+                                    <button type="submit" class="but3">Post Job</button>
+                                </div>
+                            <p id="postjob-msg" class="msg" hidden></p>
+                            </form>
+                            <div class="job-preview">
+                                <h2>Job Preview</h2>
+                                <p>Tips for creating an effective Job posting</p>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="post-job-item post-job-item2 section" id="jpage2">
+                            <div class="p-job2">
+                                <div id="jobs-msg" class="msg" hidden></div>
+                                <div id="active-jobs-list" class="active-job-cont"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--for the talent page-->
+            <div class="section" id="talent">
+                <div class="content-page-header">
+                    <h2>Talent Search</h2>
+                    <div class="account-tools">
+                        <div class="search">
+                            <input type="search" placeholder="search here.....">
+                            <p class="search-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11.5a7.5 7.5 0 1 1-15 0a7.5 7.5 0 0 1 15 0m-2.107 5.42l3.08 3.08"/></svg></p>
+                        </div>
+                        <div class="noti">
+                            <p class="noti-bell"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 19v-9a6 6 0 0 1 6-6v0a6 6 0 0 1 6 6v9M6 19h12M6 19H4m14 0h2m-9 3h2"/><circle cx="12" cy="3" r="1"/></g></svg></p>
+                            <p class="noti-dot"></p>
+                        </div>
+                        <div class="account-info">
+                            <p class="profile-image"></p>
+                            <p class="account-name">Samuel JAGGY</p>
+                            <p class="drop-down"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M16.293 9.293L12 13.586L7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z"/></svg></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-page-details">
+                    <div class="talent-input-search">
+                        <p class="talent-icon"><i class="fa-solid fa-magnifying-glass"></i></p>
+                        <input type="search" id="talent-search" placeholder="Search for workers, skills, location...">
+                    </div>
+                    <div class="search-cont">
+                        <div class="search-category">
+                            <h2>Category</h2>
+                            <div class="tal-cat">
+                                <p>Skills <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M10 6L8.59 7.41L13.17 12l-4.58 4.59L10 18l6-6z"/></svg></p>
+                                <p>Ratings <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M10 6L8.59 7.41L13.17 12l-4.58 4.59L10 18l6-6z"/></svg></p>
+                                <p>Locations <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M10 6L8.59 7.41L13.17 12l-4.58 4.59L10 18l6-6z"/></svg></p>
+                            </div>
+                            <div class="cate-rate">
+                                <h2>Hourly Rate</h2>
+                                <div class="input-rate">                                    
+                                    <div class="rate-counter">
+                                        <span>500</span>
+                                        <span>10000</span>
+                                    </div>
+                                    <input type="range" min="0" max="10000" value="5000">
+                                </div>
+                            </div>
+                            <div class="cat-avail">
+                                <h2>Availability</h2>
+                                <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m21.1 12.5l1.4 1.41l-6.53 6.59L12.5 17l1.4-1.41l2.07 2.08zM11 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 2a2 2 0 0 0-2 2a2 2 0 0 0 2 2a2 2 0 0 0 2-2a2 2 0 0 0-2-2m0 7c.68 0 1.5.09 2.41.26l-1.67 1.67l-.74-.03c-2.97 0-6.1 1.46-6.1 2.1v1.1h6.2L13 20H3v-3c0-2.66 5.33-4 8-4"/></svg></p>
+                            </div>
+                            <div class="cat-apply">
+                                <h2>Apply Rate</h2>
+                                <p>Hourly <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M10 6L8.59 7.41L13.17 12l-4.58 4.59L10 18l6-6z"/></svg></p>
+                            </div>
+                            <div class="cat-pagination">
+                                <div class="pagin-item pagin-item1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M15.41 7.41L14 6l-6 6l6 6l1.41-1.41L10.83 12z"/></svg></div>
+                                <div class="pag-cen">
+                                    <div class="pagin-item pagin-item2">1</div>
+                                    <div class="pagin-item pagin-item3">2</div>
+                                    <div class="pagin-item pagin-item4">3</div>
+                                    <div class="pagin-item pagin-item5">4</div>
+                                </div>
+                                <div class="pagin-item pagin-item6"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M10 6L8.59 7.41L13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
+                            </div>
+                        </div>
+                        <div class="talent-cont">
+                            <div class="talent-cards">
+                                <div class="talent-header">
+                                    <p class="talent-prof"></p>
+                                    <div class="talent-info">
+                                        <h2>Mark Agu</h2>
+                                        <h4>Plumber</h4>
+                                            <p class="star-rating"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></svg> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></svg> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></svg> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></svg>
+                                        </p>
+                                    </div>
+                                </div>    
+                                <p class="talent-charge"><span>1500</span>/hour</p>
+                                <p class="talent-details">Expert in plumbing activities and has good ratings in the previous work being done.</p>
+                                <div class="talent-button">
+                                    <button class="t-but1">Invite to Job</button>
+                                    <button class="t-but2">View Profile</button>
+                                </div>        
+                            </div>
+                            <div class="talent-cards">
+                                <div class="talent-header">
+                                    <p class="talent-prof talent-prof1"></p>
+                                    <div class="talent-info">
+                                        <h2>Serah Smith</h2>
+                                        <h4>Tailor</h4>
+                                            <p class="star-rating"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></svg> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></svg> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></svg>
+                                        </p>
+                                    </div>
+                                </div>    
+                                <p class="talent-charge"><span>1500</span>/hour</p>
+                                <p class="talent-details">Expert in Tailoring activities and has good ratings in the previous work being done.</p>
+                                <div class="talent-button">
+                                    <button class="t-but1">Invite to Job</button>
+                                    <button class="t-but2">View Profile</button>
+                                </div>
+                            </div>
+                            <div class="talent-cards">
+                                <div class="talent-header">
+                                    <p class="talent-prof talent-prof2"></p>
+                                    <div class="talent-info">
+                                        <h2>Emma Johnson</h2>
+                                        <h4>Chef</h4>
+                                            <p class="star-rating"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></svg> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></svg> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></svg>
+                                        </p>
+                                    </div>
+                                </div>    
+                                <p class="talent-charge"><span>1500</span>/hour</p>
+                                <p class="talent-details">Expert in Cooking activities and has good ratings in the previous work being done.</p>
+                                <div class="talent-button">
+                                    <button class="t-but1">Invite to Job</button>
+                                    <button class="t-but2">View Profile</button>
+                                </div>
+                            </div>
+                            <div class="talent-cards">
+                                <div class="talent-header">
+                                    <p class="talent-prof talent-prof3"></p>
+                                    <div class="talent-info">
+                                        <h2>Mark Agu</h2>
+                                        <h4>Carpenter</h4>
+                                            <p class="star-rating"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></svg> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></svg> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></svg>
+                                        </p>
+                                    </div>
+                                </div>    
+                                <p class="talent-charge"><span>1500</span>/hour</p>
+                                <p class="talent-details">Expert in capentry activities and has good ratings in the previous work being done.</p>
+                                <div class="talent-button">
+                                    <button class="t-but1">Invite to Job</button>
+                                    <button class="t-but2">View Profile</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--for the project page-->
+            <div class="section" id="project">
+                <div class="content-page-header">
+                    <h2>Project Management</h2>
+                    <div class="account-tools">
+                        <div class="search">
+                            <input type="search" placeholder="search here.....">
+                            <p class="search-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11.5a7.5 7.5 0 1 1-15 0a7.5 7.5 0 0 1 15 0m-2.107 5.42l3.08 3.08"/></svg></p>
+                        </div>
+                        <div class="noti">
+                            <p class="noti-bell"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 19v-9a6 6 0 0 1 6-6v0a6 6 0 0 1 6 6v9M6 19h12M6 19H4m14 0h2m-9 3h2"/><circle cx="12" cy="3" r="1"/></g></svg></p>
+                            <p class="noti-dot"></p>
+                        </div>
+                        <div class="account-info">
+                            <p class="profile-image"></p>
+                            <p class="account-name">Samuel JAGGY</p>
+                            <p class="drop-down"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M16.293 9.293L12 13.586L7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z"/></svg></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-page-details">
+                    <div class="project-cont"><!-- dynamic --></div>
+                </div>
+            </div>
+            <!--for the payment page-->
+            <div class="section" id="payment">
+                <div class="content-page-header">
+                    <h2>Payments & Finance</h2>
+                    <div class="payment-button">
+                        <button class="pay-but1">Make Payment</button>
+                    </div>
+                </div>
+                <div class="content-page-details">
+                    <div class="payment-nav">
+                        <label for="overview-page">Overview</label>
+                        <label for="history-page">Payment History</label>
+                    </div>
+                    <div class="payment-over section" id="page-overview">
+                        <div class="pay-cont">
+                            <div class="pay-items">
+                                <p class="dollar"><svg xmlns="http://www.w3.org/2000/svg" width="34" height="44" viewBox="0 0 24 24"><path fill="currentColor" d="M7 15h2c0 1.08 1.37 2 3 2s3-.92 3-2c0-1.1-1.04-1.5-3.24-2.03C9.64 12.44 7 11.78 7 9c0-1.79 1.47-3.31 3.5-3.82V3h3v2.18C15.53 5.69 17 7.21 17 9h-2c0-1.08-1.37-2-3-2s-3 .92-3 2c0 1.1 1.04 1.5 3.24 2.03C14.36 11.56 17 12.22 17 15c0 1.79-1.47 3.31-3.5 3.82V21h-3v-2.18C8.47 18.31 7 16.79 7 15"/></svg></p>
+                                <div class="pay-balance">
+                                    <p>Account Balance</p>
+                                    <h2>$12.540</h2>
+                                </div>
+                            </div>
+                            <div class="pay-items">
+                                <p class="dollar"><svg xmlns="http://www.w3.org/2000/svg" width="34" height="44" viewBox="0 0 24 24"><path fill="currentColor" d="M7 15h2c0 1.08 1.37 2 3 2s3-.92 3-2c0-1.1-1.04-1.5-3.24-2.03C9.64 12.44 7 11.78 7 9c0-1.79 1.47-3.31 3.5-3.82V3h3v2.18C15.53 5.69 17 7.21 17 9h-2c0-1.08-1.37-2-3-2s-3 .92-3 2c0 1.1 1.04 1.5 3.24 2.03C14.36 11.56 17 12.22 17 15c0 1.79-1.47 3.31-3.5 3.82V21h-3v-2.18C8.47 18.31 7 16.79 7 15"/></svg></p>
+                                <div class="pay-balance">
+                                    <p>Total Spent</p>
+                                    <h2>$3.200</h2>
+                                </div>                              
+                            </div>
+                            <div class="pay-items">
+                                <p class="dollar"><svg xmlns="http://www.w3.org/2000/svg" width="34" height="44" viewBox="0 0 24 24"><g fill="none"><path d="m12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z"/><path fill="currentColor" d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12S6.477 2 12 2m0 2a8 8 0 1 0 0 16a8 8 0 0 0 0-16m0 2a1 1 0 0 1 .993.883L13 7v4.586l2.707 2.707a1 1 0 0 1-1.32 1.497l-.094-.083l-3-3a1 1 0 0 1-.284-.576L11 12V7a1 1 0 0 1 1-1"/></g></svg></p>
+                                <div class="pay-balance">
+                                    <p>Pending Payments</p>
+                                    <h2>$1.150</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pay-history-cont">
+                            <h2>Payment History</h2>
+                            <div class="history-header">
+                                <p>Date</p>
+                                <p>Worker</p>
+                                <p>Project</p>
+                                <p>Amount</p>
+                                <p>Status</p>
+                            </div>
+                            <div class="payment-tran">
+                                <p>Apr 15,2025</p>
+                                <p>ABC Corporation</p>
+                                <p>Website Redesign</p>
+                                <p>$1,200</p>
+                                <p class="comp">Completed</p>
+                            </div>
+                            <div class="payment-tran">
+                                <p>Apr 20,2025</p>
+                                <p>XYZ Ltd</p>
+                                <p>Mobile App Dev..</p>
+                                <p>$800</p>
+                                <p class="comp">Completed</p>
+                            </div>
+                            <div class="payment-tran">
+                                <p>Apr 10,2025</p>
+                                <p>Smith & Co.</p>
+                                <p>SEO Optimization</p>
+                                <p>$600</p>
+                                <p class="comp">Completed</p>
+                            </div>
+                            <div class="payment-tran">
+                                <p>Apr 5,2025</p>
+                                <p>DEF-Industries</p>
+                                <p>Graphic Design</p>
+                                <p>$1,150</p>
+                                <p class="pend">pending</p>
+                            </div>
+                        </div>
+                        <div class="pay-footer">
+                            <h2>Withdrawal Methods</h2>
+                            <div class="pay-method-cont">
+                                <div class="pay-method-item1">
+                                    <p class="bank-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M6.5 10h-2v7h2zm6 0h-2v7h2zm8.5 9H2v2h19zm-2.5-9h-2v7h2zm-7-6.74L16.71 6H6.29zm0-2.26L2 6v2h19V6z"/></svg></p>
+                                    <div class="with-method">
+                                        <h2>Bank Account</h2>
+                                        <p>***1234</p>
+                                    </div>
+                                    <p class="ang-right"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12.6 12L8 7.4L9.4 6l6 6l-6 6L8 16.6z"/></svg></p>
+                                </div>
+                                <div class="pay-method-item2">
+                                    <p class="paypal-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 302"><path fill="#27346a" d="M217.168 23.507C203.234 7.625 178.046.816 145.823.816h-93.52A13.39 13.39 0 0 0 39.076 12.11L.136 259.077c-.774 4.87 2.997 9.28 7.933 9.28h57.736l14.5-91.971l-.45 2.88c1.033-6.501 6.593-11.296 13.177-11.296h27.436c53.898 0 96.101-21.892 108.429-85.221c.366-1.873.683-3.696.957-5.477q-2.334-1.236 0 0c3.671-23.407-.025-39.34-12.686-53.765"/><path fill="#27346a" d="M102.397 68.84a11.7 11.7 0 0 1 5.053-1.14h73.318c8.682 0 16.78.565 24.18 1.756a102 102 0 0 1 6.177 1.182a90 90 0 0 1 8.59 2.347c3.638 1.215 7.026 2.63 10.14 4.287c3.67-23.416-.026-39.34-12.687-53.765C203.226 7.625 178.046.816 145.823.816H52.295C45.71.816 40.108 5.61 39.076 12.11L.136 259.068c-.774 4.878 2.997 9.282 7.925 9.282h57.744L95.888 77.58a11.72 11.72 0 0 1 6.509-8.74"/><path fill="#2790c3" d="M228.897 82.749c-12.328 63.32-54.53 85.221-108.429 85.221H93.024c-6.584 0-12.145 4.795-13.168 11.296L61.817 293.621c-.674 4.262 2.622 8.124 6.934 8.124h48.67a11.71 11.71 0 0 0 11.563-9.88l.474-2.48l9.173-58.136l.591-3.213a11.71 11.71 0 0 1 11.562-9.88h7.284c47.147 0 84.064-19.154 94.852-74.55c4.503-23.15 2.173-42.478-9.739-56.054c-3.613-4.112-8.1-7.508-13.327-10.28c-.283 1.79-.59 3.604-.957 5.477"/><path fill="#1f264f" d="M216.952 72.128a90 90 0 0 0-5.818-1.49a110 110 0 0 0-6.177-1.174c-7.408-1.199-15.5-1.765-24.19-1.765h-73.309a11.6 11.6 0 0 0-5.053 1.149a11.68 11.68 0 0 0-6.51 8.74l-15.582 98.798l-.45 2.88c1.025-6.501 6.585-11.296 13.17-11.296h27.444c53.898 0 96.1-21.892 108.428-85.221c.367-1.873.675-3.688.958-5.477q-4.682-2.47-10.14-4.279a83 83 0 0 0-2.77-.865"/></svg></p>
+                                    <div class="with-method">
+                                        <h2>Paypal</h2>
+                                        <p>user@example.com</p>
+                                    </div>
+                                    <div class="add-button">
+                                        <button class="add-but1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z"/></svg> Add Method</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="payment-history section" id="page-history">
+                        <div class="pay-history-cont">
+                            <h2>Payment History</h2>
+                            <div class="history-header">
+                                <p>Date</p>
+                                <p>Worker</p>
+                                <p>Project</p>
+                                <p>Amount</p>
+                                <p>Status</p>
+                            </div>
+                            <div class="payment-tran">
+                                <p>Apr 15,2025</p>
+                                <p>ABC Corporation</p>
+                                <p>Website Redesign</p>
+                                <p>$1,200</p>
+                                <p class="comp">Completed</p>
+                            </div>
+                            <div class="payment-tran">
+                                <p>Apr 20,2025</p>
+                                <p>XYZ Ltd</p>
+                                <p>Mobile App Dev...</p>
+                                <p>$850</p>
+                                <p class="comp">Completed</p>
+                            </div>
+                            <div class="payment-tran">
+                                <p>Apr 5,2025</p>
+                                <p>DEF-Industries</p>
+                                <p>Graphic Design</p>
+                                <p>$1,150</p>
+                                <p class="pend">pending</p>
+                            </div>
+                            <div class="payment-tran">
+                                <p>Apr 5,2025</p>
+                                <p>DEF-Industries</p>
+                                <p>Graphic Design</p>
+                                <p>$1,150</p>
+                                <p class="pend">pending</p>
+                            </div>
+                            <div class="payment-tran">
+                                <p>Apr 10,2025</p>
+                                <p>Smith & Co.</p>
+                                <p>SEO Optimization</p>
+                                <p>$600</p>
+                                <p class="comp">Completed</p>
+                            </div>
+                            <div class="payment-tran">
+                                <p>Apr 10,2025</p>
+                                <p>Smith & Co.</p>
+                                <p>SEO Optimization</p>
+                                <p>$600</p>
+                                <p class="comp">Completed</p>
+                            </div>
+                            <div class="payment-tran">
+                                <p>Apr 5,2025</p>
+                                <p>DEF-Industries</p>
+                                <p>Graphic Design</p>
+                                <p>$1,150</p>
+                                <p class="pend">pending</p>
+                            </div>
+                            <div class="payment-tran">
+                                <p>Apr 5,2025</p>
+                                <p>DEF-Industries</p>
+                                <p>Graphic Design</p>
+                                                               <p>$1,150</p>
+                                <p class="pend">pending</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--for the review page-->
+            <div class="section" id="review">
+                <div class="content-page-header">
+                    <h2>Reviews & Ratings</h2>
+                    <div class="account-tools">
+                        <div class="search">
+                            <input type="search" placeholder="search here.....">
+                            <p class="search-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11.5a7.5 7.5 0 1 1-15 0a7.5 7.5 0 0 1 15 0m-2.107 5.42l3.08 3.08"/></svg></p>
+                        </div>
+                        <div class="noti">
+                            <p class="noti-bell"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 19v-9a6 6 0 0 1 6-6v0a6 6 0 0 1 6 6v9M6 19h12M6 19H4m14 0h2m-9 3h2"/><circle cx="12" cy="3" r="1"/></g></svg></p>
+                            <p class="noti-dot"></p>
+                        </div>
+                        <div class="account-info">
+                            <p class="profile-image"></p>
+                            <p class="account-name">Samuel JAGGY</p>
+                            <p class="drop-down"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M16.293 9.293L12 13.586L7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z"/></svg></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-page-details">
+                    <div class="review-header">
+                        <label for="review-page">Leave a Review</label>
+                        <label for="rev-history-page">Review History</label>
+                    </div>
+                    <div class="review-cont section" id="page-review">
+                        <div class="review-container">
+                            <div class="review-item1">
+                            <form action="">
+                                <div class="rev-select">
+                                    <label for="review-select">Select a completed project</label>
+                                    <select name="review-select" id="">
+                                        <option value="" selected disabled>choose projects</option>
+                                        <option value="">Graphic Design</option>
+                                        <option value="">Web Design</option>
+                                        <option value="">Carpentry</option>
+                                        <option value="">Plumbing</option>
+                                    </select>
+                                </div>
+                                <div class="rev-rating">
+                                    <h2>Rating</h2>
+                                    <label for="check-rate"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></label>
+                                    <label for="check-rate1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></label>
+                                    <label for="check-rate2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></label>
+                                    <label for="check-rate3"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></label>
+                                    <label for="check-rate4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></svg></label>
+                                </div>
+                                <div class="rev-feedback">
+                                    <label for="feedback">Feedback</label>
+                                    <textarea name="feedback" id="" placeholder="Write your feedbacks here" required></textarea>
+                                </div>
+                                <div class="rev-che">
+                                    <input type="checkbox" name="private">
+                                    <label for="private">Private feedback <span>(visible to the worker only)</span></label>
+                                </div>
+                                <div class="rev-button">
+                                    <button class="rev-but1">Submit Review</button>
+                                </div>
+                            </form>
+                            
+                            <!-- Removed hardcoded Review History block under the form. History is rendered dynamically in the tab below. -->
+                            
+                            <div class="rev-tips">
+                                <h2>Tips for Writing a Helpful Review</h2>
+                                <p>Be specific and detailed</p>
+                                <p>Keep your comments constructive</p>
+                                <p>Avoid sharing personal or sensitive information</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review History tab: keep only empty container for dynamic rendering -->
+                    <div class="history-rev section" id="page-hist">
+                        <h2>Review History</h2>
+                        <div class="comp-review-cont"></div>
+                    </div>
+                </div>
+            </div>
+            <!--for the help page-->
+            <div class="section" id="help">
+                <div class="content-page-header">
+                    <h2>Help & Support</h2>
+                    <div class="account-tools">
+                        <div class="help-search">
+                            <p class="search-icon2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11.5a7.5 7.5 0 1 1-15 0a7.5 7.5 0 0 1 15 0m-2.107 5.42l3.08 3.08"/></svg></p>
+                            <input type="search" placeholder="search for help topics">
+                        </div>
+                    </div>
+                </div>
+                <div class="content-page-details">
+                    <div class="help-header">
+                        <h2>FAQs</h2>
+                    </div>
+                    <div class="help-body">
+                        <details>
+                            <summary>How do I know if a worker is qualified?</summary>
+                            <p>Each professional has a profile with skills, portfolio reviews, and certifications. Check these before hiring.</p>
+                        </details>
+                        <details>
+                            <summary>Can I update my profile later?</summary>
+                            <p>Yes, you can edit your profile at any time under Settings > Edit Profile.</p>
+                        </details>
+                        <details>
+                            <summary>Can I hire more than one worker at once?</summary>
+                            <p>Yes. You can send multiple requests and hire multiple professionals for different jobs.</p>
+                        </details>
+                    </div>
+                    <div class="help-footer">
+                        <h2>Popular Topics</h2>
+                        <div class="help-topic-cont">
+                            <div class="help-topic-item">
+                                <p><a href="#">Accessing Jobs</a></p>
+                                <p><a href="#">Payment plan</a></p>
+                                <p><a href="#">Managing Projects</a></p>
+                            </div>
+                            <div class="help-topic-item">
+                                <p><a href="#">Applying for jobs</a></p>
+                                <p><a href="#">Qualified Workers</a></p>
+                                <p><a href="#">Recent Projects</a></p>
+                            </div>
+                            <div class="help-topic-item help-topic-item3">
+                                <p><a href="#">Ratings</a></p>
+                                <p><a href="#">Reviews</a></p>
+                                <p><a href="#">Contact Support</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--for the logout page-->
+            <div class="section" id="logout">
+                <div class="content-page-header">
+                    <h2>Logout</h2>
+                    <div class="account-tools">
+                        <div class="search">
+                            <input type="search" placeholder="search here.....">
+                            <p class="search-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11.5a7.5 7.5 0 1 1-15 0a7.5 7.5 0 0 1 15 0m-2.107 5.42l3.08 3.08"/></svg></p>
+                        </div>
+                        <div class="noti">
+                            <p class="noti-bell"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 19v-9a6 6 0 0 1 6-6v0a6 6 0 0 1 6 6v9M6 19h12M6 19H4m14 0h2m-9 3h2"/><circle cx="12" cy="3" r="1"/></g></svg></p>
+                            <p class="noti-dot"></p>
+                        </div>
+                        <div class="account-info">
+                            <p class="profile-image"></p>
+                            <p class="account-name">Samuel JAGGY</p>
+                            <p class="drop-down"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M16.293 9.293L12 13.586L7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z"/></svg></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-page-details logout-page">
+                    <div class="logout-cont">
+                        <h2>Are you sure you want to log out?</h2>
+                        <div class="logout-buttons">
+                            <button class="log-but1">Yes, Log Out</button>
+                            <button class="log-but2">Cancel</button>
+                        </div>
+                        <p class="log-memo">You will be redirected to the Log In page.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../scripts/media-url.js"></script>
+    <script src="../scripts/auth.js"></script>
+    <script src="../scripts/dashboard.js"></script>
+    <script src="../scripts/jobs.js"></script>
+    <script src="../scripts/talent.js"></script>
+    <script src="../scripts/projects.js"></script>
+    <script src="../scripts/payments.js"></script>
+    <script src="../scripts/ui-user.js"></script>
+    <!-- Global Modals for Client (reused by scripts) -->
+    <div id="modal-backdrop" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:9998;"></div>
+    <div id="modal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#fff; border-radius:8px; width:90%; max-width:420px; box-shadow:0 10px 30px rgba(0,0,0,0.2); z-index:9999;">
+        <div style="padding:12px 16px; border-bottom:1px solid #eef2f7; display:flex; align-items:center; justify-content:space-between; gap:8px;">
+            <h3 id="modal-title" style="margin:0; font-size:16px;">Modal</h3>
+            <button id="modal-close" type="button" style="border:none; background:transparent; font-size:18px; cursor:pointer">×</button>
+        </div>
+        <div id="modal-body" style="padding:14px 18px;">
+            <label id="modal-label" for="modal-input" style="display:block; font-size:13px; color:#333; margin-bottom:6px;">Input</label>
+            <input id="modal-input" type="text" style="width:100%; padding:8px 10px; border:1px solid #cbd5e1; border-radius:6px; outline:none;" />
+        </div>
+        <div style="display:flex; gap:8px; padding:12px 16px; border-top:1px solid #eef2f7; justify-content:flex-end;">
+            <button id="modal-cancel" type="button" class="create-but" style="background:#eee; color:#111;">Cancel</button>
+            <button id="modal-ok" type="button" class="create-but">OK</button>
+        </div>
+    </div>
+</body>
+</html>

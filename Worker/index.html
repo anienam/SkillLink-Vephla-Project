@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillLink Worker</title>
+    <meta name="sl-api-base" content="https://skill-link-gg2c.onrender.com/api">
+    <link rel="icon" type="image/x-icon" href="../Images/Logo/Logo.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <input type="radio" name="main-nav" id="tab-dashboard" checked>
+    <input type="radio" name="main-nav" id="tab-profile">
+    <input type="radio" name="main-nav" id="tab-job">
+    <input type="radio" name="main-nav" id="tab-projects">
+    <input type="radio" name="main-nav" id="tab-payments">
+    <input type="radio" name="main-nav" id="tab-reviews">
+    <input type="radio" name="main-nav" id="tab-help">
+    <input type="radio" name="main-nav" id="tab-logout">
+    <input type="radio" name="job-section" id="job-invitation" checked>
+    <input type="radio" name="job-section" id="active-job">
+    <input type="radio" name="job-section" id="complete-job">
+    <input type="radio" name="pay-section" id="overview-page" checked>
+    <input type="radio" name="pay-section" id="history-page">
+    <input type="checkbox" name="small-menu" id="mobile-menu">
+
+    <!-- mobile header and nav-bar     -->
+    <div class="mob-section">
+        <div class="mob-head">
+            <div class="logo-mob">
+                <img src="../Images/Logo/Frame 228.png" alt="logo image" width="150">
+            </div>
+            <div class="bars">
+                <div class="account-tools">
+                    <div class="search">
+                        <input type="search" placeholder="search here.....">
+                        <p class="search-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11.5a7.5 7.5 0 1 1-15 0a7.5 7.5 0 0 1 15 0m-2.107 5.42l3.08 3.08"/></svg></p>
+                    </div>
+                    <div class="noti">
+                        <p class="noti-bell"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 19v-9a6 6 0 0 1 6-6v0a6 6 0 0 1 6 6v9M6 19h12M6 19H4m14 0h2m-9 3h2"/><circle cx="12" cy="3" r="1"/></g></svg></p>                            <p class="noti-dot"></p>
+                    </div>
+                    <label for="mobile-menu"></label>
+                </div>
+                <div class="mob-opt">
+                    <div class="mob-options">
+                        <label for="tab-dashboard">Dashboard</label>
+                        <label for="tab-profile">Profile</label>
+                        <label for="tab-job">Job</label>
+                        <label for="tab-projects">Project Management</label>
+                        <label for="tab-payments">Payments & Finance</label>
+                        <label for="tab-reviews">Reviews</label>
+                        <label for="tab-help">Help</label>
+                        <label for="tab-logout">Logout</label>
+                    </div>
+                </div>
+            </div>
+            
+    </div>
+    </div>
+
+    <div class="layout">
+        <header>
+            <div class="logo-section">
+                <img src="../Images/Logo/Frame 229.png" alt="logo" width="140">
+            </div>
+            <div class="nav-items">
+                <label for="tab-dashboard"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M13 9V3h8v6zM3 13V3h8v10zm10 8V11h8v10zM3 21v-6h8v6zm2-10h4V5H5zm10 8h4v-6h-4zm0-12h4V5h-4zM5 19h4v-2H5zm4-2"/></svg> Dashboard</label>
+                <label for="tab-profile"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M4 22a8 8 0 1 1 16 0h-2a6 6 0 0 0-12 0zm8-9c-3.315 0-6-2.685-6-6s2.685-6 6-6s6 2.685 6 6s-2.685 6-6 6m0-2c2.21 0 4-1.79 4-4s-1.79-4-4-4s-4 1.79-4 4s1.79 4 4 4"/></svg>Profile</label>
+                <label for="tab-job"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M4 19V8h16v3.29c.72.22 1.4.54 2 .97V8c0-1.11-.89-2-2-2h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h7.68c-.3-.62-.5-1.29-.6-2zm6-15h4v2h-4z"/><path fill="currentColor" d="M18 13c-2.76 0-5 2.24-5 5s2.24 5 5 5s5-2.24 5-5s-2.24-5-5-5m1.65 7.35L17.5 18.2V15h1v2.79l1.85 1.85z"/></svg> Jobs</label>
+                <label for="tab-projects"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M14 6V4h-4v2zM4 8v11h16V8zm16-2c1.11 0 2 .89 2 2v11c0 1.11-.89 2-2 2H4c-1.11 0-2-.89-2-2l.01-11c0-1.11.88-2 1.99-2h4V4c0-1.11.89-2 2-2h4c1.11 0 2 .89 2 2v2z"/></svg> Projects</label>
+                <label for="tab-payments"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M14 13q-1.25 0-2.125-.875T11 10t.875-2.125T14 7t2.125.875T17 10t-.875 2.125T14 13m-7 3q-.825 0-1.412-.587T5 14V6q0-.825.588-1.412T7 4h14q.825 0 1.413.588T23 6v8q0 .825-.587 1.413T21 16zm2-2h10q0-.825.588-1.412T21 12V8q-.825 0-1.412-.587T19 6H9q0 .825-.587 1.413T7 8v4q.825 0 1.413.588T9 14m11 6H3q-.825 0-1.412-.587T1 18V7h2v11h17zM7 14V6z"/></svg> Payments</label>
+                <label for="tab-reviews"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M9.075 14.25L12 12.475l2.925 1.775l-.775-3.325l2.6-2.25l-3.425-.275L12 5.25L10.675 8.4l-3.425.275l2.6 2.25zM2 22V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v12q0 .825-.587 1.413T20 18H6zm3.15-6H20V4H4v13.125zM4 16V4z"/></svg> Reviews</label>
+                <label for="tab-help"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10m0-2a8 8 0 1 0 0-16a8 8 0 0 0 0 16m-1-5h2v2h-2zm2-1.645V14h-2v-1.5a1 1 0 0 1 1-1a1.5 1.5 0 1 0-1.471-1.794l-1.962-.393A3.501 3.501 0 1 1 13 13.355"/></svg> Help</label>
+                <label for="tab-logout"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h7v2H5v14h7v2zm11-4l-1.375-1.45l2.55-2.55H9v-2h8.175l-2.55-2.55L16 7l5 5z"/></svg> Logout</label>
+            </div>
+        </header>
+        <div class="content-page">
+            <!--for the dashboard page-->
+            <div class="section" id="dashboard">
+                <div class="content-page-header">
+                    <h2>Dashboard</h2>
+                    <div class="account-tools">
+                        <div class="search">
+                            <input type="search" placeholder="search here.....">
+                            <p class="search-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11.5a7.5 7.5 0 1 1-15 0a7.5 7.5 0 0 1 15 0m-2.107 5.42l3.08 3.08"/></svg></p>
+                        </div>
+                        <div class="noti">
+                            <p class="noti-bell"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 19v-9a6 6 0 0 1 6-6v0a6 6 0 0 1 6 6v9M6 19h12M6 19H4m14 0h2m-9 3h2"/><circle cx="12" cy="3" r="1"/></g></svg></p>
+                            <p class="noti-dot"></p>
+                        </div>
+                        <div class="account-info">
+                            <p class="profile-image"></p>
+                            <p class="account-name">Thomas</p>
+                            <p class="drop-down"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M16.293 9.293L12 13.586L7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z"/></svg></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-page-details">
+                    <div class="dash-intro">
+                        <h1></h1>
+                        <p></p>
+                    </div>
+                    <div class="dash-head">
+                        <div class="dash-head-item dash-head-item1">
+                            <div class="dash-prof">
+                                <div class="d-split">
+                                    <p class="dash-prof-image"></p>
+                                    <p></p>
+                                </div>
+                                <progress min="0" max="100" value="0"></progress>
+                            </div>
+                            <div class="dash-pend">
+                                <p></p>
+                                <h2>Pending Payments</h2>
+                            </div>
+                        </div>
+                        <div class="dash-head-item dash-head-item2">
+                            <p></p>
+                            <h2>New Messages</h2>
+                        </div>
+                        <div class="dash-head-item dash-head-item3">
+                            <p></p>
+                            <h2>Profile Views</h2>
+                        </div>
+                        <div class="dash-head-item dash-head-item4">
+                            <p></p>
+                            <h2>Current Rating</h2>
+                            <p class="dash-rate"><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24"><path fill="currentColor" d="m15.15 16.85l-.825-3.6l2.775-2.4l-3.65-.325l-1.45-3.4v7.8zM5.825 21l1.625-7.025L2 9.25l7.2-.625L12 2l2.8 6.625l7.2.625l-5.45 4.725L18.175 21L12 17.275z"/></svg> <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24"><path fill="currentColor" d="m15.15 16.85l-.825-3.6l2.775-2.4l-3.65-.325l-1.45-3.4v7.8zM5.825 21l1.625-7.025L2 9.25l7.2-.625L12 2l2.8 6.625l7.2.625l-5.45 4.725L18.175 21L12 17.275z"/></svg> <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24"><path fill="currentColor" d="m15.15 16.85l-.825-3.6l2.775-2.4l-3.65-.325l-1.45-3.4v7.8zM5.825 21l1.625-7.025L2 9.25l7.2-.625L12 2l2.8 6.625l7.2.625l-5.45 4.725L18.175 21L12 17.275z"/></svg> <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24"><path fill="currentColor" d="m15.15 16.85l-.825-3.6l2.775-2.4l-3.65-.325l-1.45-3.4v7.8zM5.825 21l1.625-7.025L2 9.25l7.2-.625L12 2l2.8 6.625l7.2.625l-5.45 4.725L18.175 21L12 17.275z"/></svg> <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24"><path fill="currentColor" d="m15.15 16.85l-.825-3.6l2.775-2.4l-3.65-.325l-1.45-3.4v7.8zM5.825 21l1.625-7.025L2 9.25l7.2-.625L12 2l2.8 6.625l7.2.625l-5.45 4.725L18.175 21L12 17.275z"/></svg></p>
+                        </div>
+                    </div>
+                    <div class="dash-body">
+                        <div class="dash-body-item dash-body-item1">
+                            <div class="dash-body-header">
+                                <h2>Recent Jobs</h2>
+                                <p>View details.</p>
+                            </div>
+                            <div class="dash-body-menu"><!-- dynamic --></div>
+                        </div>
+                        <div class="dash-body-item dash-body-item2">
+                            <div class="dash-body-header">
+                                <h2>Latest Messages</h2>
+                                <p>View details.</p>
+                            </div>
+                            <div class="dash-body-mes"><!-- dynamic --></div>
+                        </div>
+                        <div class="dash-body-item dash-body-item3">
+                            <div class="dash-body-header">
+                                <h2>Ongoing Jobs</h2>
+                                <p>View details.</p>
+                            </div>
+                            <div class="dash-on"><!-- dynamic --></div>
+                        </div>
+                        <div class="dash-body-item dash-body-item4">
+                            <div class="dash-body-header">
+                                <h2>Earning Review</h2>
+                                <div class="dash-earn-type">
+                                    <p>Weekly</p>
+                                    <p>Weekly</p>
+                                </div>
+                            </div>
+                            <div class="dash-chart"><!-- dynamic --></div>
+                        </div>
+                    </div>
+                    <!-- Removed duplicated static dashboard sections -->
+                </div>
+            </div>
+            <!--for the profile page-->
+            <div class="section" id="profile">
+                <div class="content-page-header">
+                    <h2>Profile Management</h2>
+                    <div class="account-tools">
+                        <div class="search">
+                            <input type="search" placeholder="search here.....">
+                            <p class="search-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11.5a7.5 7.5 0 1 1-15 0a7.5 7.5 0 0 1 15 0m-2.107 5.42l3.08 3.08"/></svg></p>
+                        </div>
+                        <div class="noti">
+                            <p class="noti-bell"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 19v-9a6 6 0 0 1 6-6v0a6 6 0 0 1 6 6v9M6 19h12M6 19H4m14 0h2m-9 3h2"/><circle cx="12" cy="3" r="1"/></g></svg></p>
+                            <p class="noti-dot"></p>
+                        </div>
+                        <div class="edit"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="currentColor" d="M5 19h1.425L16.2 9.225L14.775 7.8L5 17.575zm-2 2v-4.25L16.2 3.575q.3-.275.663-.425t.762-.15t.775.15t.65.45L20.425 5q.3.275.438.65T21 6.4q0 .4-.137.763t-.438.662L7.25 21zM19 6.4L17.6 5zm-3.525 2.125l-.7-.725L16.2 9.225z"/></svg> Edit</div>
+                    </div>
+                </div>
+                <div class="content-page-details">
+                    <div class="profile-header">
+                        <div class="profile-header-item profile-header-item1">
+                            <h2>Personal Info</h2>
+                            <div class="profile-image-cont"></div>
+                            <div class="image-upload">
+                                                                <input type="file" placeholder="Upload/Change" id="upload">
+                                <label for="upload"><i class="fa-solid fa-arrow-up-from-bracket"></i> Upload/Change</label>
+                            </div>
+                        </div>
+                        <div class="profile-header-item profile-header-item2">
+                                                        <form action="javascript:void(0)">
+                                <div class="profile-fname">
+                                    <label for="fname">Full Name</label>
+                                                                        <input type="text" id="profile-name" placeholder="Thomas Joe" required>
+                                </div>
+                                                                <div class="form-split">
+                                                                    <div class="profile-loc">
+                                                                        <label for="profile-title">Professional Title</label>
+                                                                        <input type="text" id="profile-title" placeholder="Plumber">
+                                                                    </div>
+                                                                    <div class="form-email">
+                                                                        <label for="profile-hourly">Hourly Rate (Naira)</label>
+                                                                        <input type="number" id="profile-hourly" min="0" step="1" placeholder="1500">
+                                                                    </div>
+                                                                </div>
+                                <div class="form-split">
+                                    <div class="profile-loc">
+                                        <label for="profile-location">Location</label>
+                                        <input type="text" id="location" required placeholder="Lagos, Nigeria">
+                                    </div>
+                                    <div class="form-email">
+                                        <label for="profile-email">Email Address</label>
+                                                                                <input type="email" id="profile-email" required placeholder="Thomasjoe@gmail.com" disabled>
+                                    </div>
+                                </div>
+                                <div class="bio">
+                                    <label for="profile-bio">Bio</label>
+                                    <textarea name="" id="profile-bio" maxlength="200" minlength="50"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                                        <div id="profile-msg" class="msg" hidden></div>
+                    <div class="profile-body">
+                        <div class="profile-body-item profile-body-item1">
+                            <h2>Skills & Certification</h2>
+                            <div class="profile-skill">
+                                <div class="profile-skill-item">Plumbing</div>
+                                <div class="profile-skill-item">Electrical</div>
+                                <div class="profile-skill-item">Carpentry</div>
+                                <div class="profile-skill-item">HVAC</div>
+                                <div class="profile-skill-item profile-skill-item5"><i class="fa-solid fa-plus"></i> Add Skill</div>
+                            </div>
+                            <div class="prof-avail">
+                                <h2>Availabilty</h2>
+                                <div class="available">
+                                    <div class="toggle">
+                                        <input type="checkbox" id="toggle">
+                                        <label for="toggle" class="slider"></label>
+                                    </div>
+                                    <p >Available</p>
+                                </div>
+                            </div>
+                            <div class="certs">
+                                <h2>Certifications</h2>
+                                <div id="cert-list"></div>
+                                <div style="margin-top:10px">
+                                    <button id="cert-add-btn" type="button" class="create-but" style="padding:6px 12px">Add Certification</button>
+                                    <button id="nin-add-btn" type="button" class="create-but" style="padding:6px 12px; background:#e7f3ff; color:#0b5ed7; margin-left:6px">Add NIN</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profile-body-item profile-body-item2">
+                            <h2>Work Portfolio</h2>
+                            <div class="prof-port">
+                                <div class="prof-port-item prof-port-item1"></div>
+                                <div class="prof-port-item prof-port-item2"></div>
+                                <div class="prof-port-item prof-port-item3"></div>
+                                <div class="prof-port-item prof-port-item4"></div>
+                                <div class="prof-port-item prof-port-item5"></div>
+                                <div class="prof-port-item prof-port-item6"></div>
+                            </div>
+                            <div id="portfolio-add-btn" class="prof-port-item7"><i class="fa-solid fa-plus"></i> Add Photo</div>
+                        </div>
+                    </div>
+                    <div class="button-create">
+                        <button class="create-but" type="button">Save Profile</button>
+                    </div>
+                </div>
+            </div>
+            <!--for the job page-->
+            <div class="section" id="job">
+                <div class="content-page-header">
+                    <h2>Jobs</h2>
+                    <div class="account-tools">
+                        <div class="search">
+                            <input type="search" placeholder="search here.....">
+                            <p class="search-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11.5a7.5 7.5 0 1 1-15 0a7.5 7.5 0 0 1 15 0m-2.107 5.42l3.08 3.08"/></svg></p>
+                        </div>
+                        <div class="noti">
+                            <p class="noti-bell"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 19v-9a6 6 0 0 1 6-6v0a6 6 0 0 1 6 6v9M6 19h12M6 19H4m14 0h2m-9 3h2"/><circle cx="12" cy="3" r="1"/></g></svg></p>
+                            <p class="noti-dot"></p>
+                        </div>
+                        <div class="account-info">
+                            <p class="profile-image"></p>
+                            <p class="account-name">Thomas</p>
+                            <p class="drop-down"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M16.293 9.293L12 13.586L7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z"/></svg></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-page-details">
+                    <div class="job-header">
+                        <label for="job-invitation">Invitations</label>
+                        <label for="active-job">Active Jobs</label>
+                        <label for="complete-job">Completed Jobs</label>
+                    </div>
+                    <div class="job-nav">
+                        <div class="job-search">
+                            <p><i class="fa-solid fa-magnifying-glass"></i></p>
+                            <input type="search" placeholder="Search">
+                        </div>
+                        <select name="" id="">
+                            <option value="" selected disabled>Category</option>
+                            <option value="">Web Design</option>
+                            <option value="">Plumbing</option>
+                            <option value="">Carpentry</option>
+                            <option value="">Development</option>
+                        </select>
+                        <input type="date" placeholder="date" id="job-date">
+                    </div>
+                    <div class="invite-page section" id="inv-page">
+                        <div class="invite-page-cont"><!-- dynamic --></div>
+                        <div class="pagination">
+                            <div class="pag-item pag-item1"><i class="fa-solid fa-chevron-left"></i></div>
+                            <div class="pag-item pag-item2">1</div>
+                            <div class="pag-item pag-item3"><i class="fa-solid fa-chevron-right"></i></div>
+                        </div>
+                    </div>
+                    <div class="active-page section" id="act-page">
+                        <div class="active-page-cont"><!-- dynamic --></div>
+                        <div class="pagination">
+                            <div class="pag-item pag-item1"><i class="fa-solid fa-chevron-left"></i></div>
+                            <div class="pag-item pag-item2">2</div>
+                            <div class="pag-item pag-item3"><i class="fa-solid fa-chevron-right"></i></div>
+                        </div>
+                    </div>
+                    <div class="complete-page section" id="com-page">
+                        <div class="complete-page-cont"><!-- dynamic --></div>
+                        <div class="pagination">
+                            <div class="pag-item pag-item1"><i class="fa-solid fa-chevron-left"></i></div>
+                            <div class="pag-item pag-item2">3</div>
+                            <div class="pag-item pag-item3"><i class="fa-solid fa-chevron-right"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--for the project page-->
+            <div class="section" id="project">
+                <div class="content-page-header">
+                    <h2>Project Management</h2>
+                    <div class="account-tools">
+                        <div class="search">
+                            <input type="search" placeholder="search here.....">
+                            <p class="search-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11.5a7.5 7.5 0 1 1-15 0a7.5 7.5 0 0 1 15 0m-2.107 5.42l3.08 3.08"/></svg></p>
+                        </div>
+                        <div class="noti">
+                            <p class="noti-bell"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 19v-9a6 6 0 0 1 6-6v0a6 6 0 0 1 6 6v9M6 19h12M6 19H4m14 0h2m-9 3h2"/><circle cx="12" cy="3" r="1"/></g></svg></p>
+                            <p class="noti-dot"></p>
+                        </div>
+                        <div class="account-info">
+                            <p class="profile-image"></p>
+                            <p class="account-name">Thomas</p>
+                            <p class="drop-down"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M16.293 9.293L12 13.586L7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z"/></svg></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-page-details">
+                    <div class="project-cont"><!-- dynamic --></div>
+                </div>
+            </div>
+            <!--for the payment page-->
+            <div class="section" id="payment">
+                <div class="content-page-header">
+                    <h2>Payments & Finance</h2>
+                </div>
+                <div class="content-page-details">
+                    <div class="payment-nav">
+                        <label for="overview-page">Overview</label>
+                        <label for="history-page">Payment History</label>
+                    </div>
+                    <div class="payment-over section" id="page-overview">
+                        <div class="pay-cont">
+                            <div class="pay-items">
+                                <p class="dollar"><svg xmlns="http://www.w3.org/2000/svg" width="34" height="44" viewBox="0 0 24 24"><path fill="currentColor" d="M7 15h2c0 1.08 1.37 2 3 2s3-.92 3-2c0-1.1-1.04-1.5-3.24-2.03C9.64 12.44 7 11.78 7 9c0-1.79 1.47-3.31 3.5-3.82V3h3v2.18C15.53 5.69 17 7.21 17 9h-2c0-1.08-1.37-2-3-2s-3 .92-3 2c0 1.1 1.04 1.5 3.24 2.03C14.36 11.56 17 12.22 17 15c0 1.79-1.47 3.31-3.5 3.82V21h-3v-2.18C8.47 18.31 7 16.79 7 15"/></svg></p>
+                                <div class="pay-balance">
+                                    <p>Account Balance</p>
+                                    <h2>$12.540</h2>
+                                </div>
+                            </div>
+                            <div class="pay-items">
+                                <p class="dollar"><svg xmlns="http://www.w3.org/2000/svg" width="34" height="44" viewBox="0 0 24 24"><path fill="currentColor" d="M7 15h2c0 1.08 1.37 2 3 2s3-.92 3-2c0-1.1-1.04-1.5-3.24-2.03C9.64 12.44 7 11.78 7 9c0-1.79 1.47-3.31 3.5-3.82V3h3v2.18C15.53 5.69 17 7.21 17 9h-2c0-1.08-1.37-2-3-2s-3 .92-3 2c0 1.1 1.04 1.5 3.24 2.03C14.36 11.56 17 12.22 17 15c0 1.79-1.47 3.31-3.5 3.82V21h-3v-2.18C8.47 18.31 7 16.79 7 15"/></svg></p>
+                                <div class="pay-balance">
+                                    <p>Total Spent</p>
+                                    <h2>$3.200</h2>
+                                </div>                              
+                            </div>
+                            <div class="pay-items">
+                                <p class="dollar"><svg xmlns="http://www.w3.org/2000/svg" width="34" height="44" viewBox="0 0 24 24"><g fill="none"><path d="m12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z"/><path fill="currentColor" d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12S6.477 2 12 2m0 2a8 8 0 1 0 0 16a8 8 0 0 0 0-16m0 2a1 1 0 0 1 .993.883L13 7v4.586l2.707 2.707a1 1 0 0 1-1.32 1.497l-.094-.083l-3-3a1 1 0 0 1-.284-.576L11 12V7a1 1 0 0 1 1-1"/></g></svg></p>
+                                <div class="pay-balance">
+                                    <p>Pending Payments</p>
+                                    <h2>$1.150</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pay-history-cont">
+                            <h2>Payment History</h2>
+                            <div class="history-header">
+                                <p>Date</p>
+                                <p>Client</p>
+                                <p>Project</p>
+                                <p>Amount</p>
+                                <p>Status</p>
+                            </div>
+                            <div class="payment-tran">
+                                <p>Apr 15,2025</p>
+                                <p>ABC Corporation</p>
+                                <p>Website Redesign</p>
+                                <p>$1,200</p>
+                                <p class="comp">Completed</p>
+                            </div>
+                            <div class="payment-tran">
+                                <p>Apr 20,2025</p>
+                                <p>XYZ Ltd</p>
+                                <p>Mobile App Dev..</p>
+                                <p>$800</p>
+                                <p class="comp">Completed</p>
+                            </div>
+                            <div class="payment-tran">
+                                <p>Apr 10,2025</p>
+                                <p>Smith & Co.</p>
+                                <p>SEO Optimization</p>
+                                <p>$600</p>
+                                <p class="comp">Completed</p>
+                            </div>
+                            <div class="payment-tran">
+                                <p>Apr 5,2025</p>
+                                <p>DEF-Industries</p>
+                                <p>Graphic Design</p>
+                                <p>$1,150</p>
+                                <p class="pend">pending</p>
+                            </div>
+                        </div>
+                        <div class="pay-footer">
+                            <h2>Withdrawal Methods</h2>
+                            <div class="pay-method-cont">
+                                <div class="pay-method-item1">
+                                    <p class="bank-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M6.5 10h-2v7h2zm6 0h-2v7h2zm8.5 9H2v2h19zm-2.5-9h-2v7h2zm-7-6.74L16.71 6H6.29zm0-2.26L2 6v2h19V6z"/></svg></p>
+                                    <div class="with-method">
+                                        <h2>Bank Account</h2>
+                                        <p>***1234</p>
+                                    </div>
+                                    <p class="ang-right"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12.6 12L8 7.4L9.4 6l6 6l-6 6L8 16.6z"/></svg></p>
+                                </div>
+                                <div class="pay-method-item2">
+                                    <p class="paypal-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 302"><path fill="#27346a" d="M217.168 23.507C203.234 7.625 178.046.816 145.823.816h-93.52A13.39 13.39 0 0 0 39.076 12.11L.136 259.077c-.774 4.87 2.997 9.28 7.933 9.28h57.736l14.5-91.971l-.45 2.88c1.033-6.501 6.593-11.296 13.177-11.296h27.436c53.898 0 96.101-21.892 108.429-85.221c.366-1.873.683-3.696.957-5.477q-2.334-1.236 0 0c3.671-23.407-.025-39.34-12.686-53.765"/><path fill="#27346a" d="M102.397 68.84a11.7 11.7 0 0 1 5.053-1.14h73.318c8.682 0 16.78.565 24.18 1.756a102 102 0 0 1 6.177 1.182a90 90 0 0 1 8.59 2.347c3.638 1.215 7.026 2.63 10.14 4.287c3.67-23.416-.026-39.34-12.687-53.765C203.226 7.625 178.046.816 145.823.816H52.295C45.71.816 40.108 5.61 39.076 12.11L.136 259.068c-.774 4.878 2.997 9.282 7.925 9.282h57.744L95.888 77.58a11.72 11.72 0 0 1 6.509-8.74"/><path fill="#2790c3" d="M228.897 82.749c-12.328 63.32-54.53 85.221-108.429 85.221H93.024c-6.584 0-12.145 4.795-13.168 11.296L61.817 293.621c-.674 4.262 2.622 8.124 6.934 8.124h48.67a11.71 11.71 0 0 0 11.563-9.88l.474-2.48l9.173-58.136l.591-3.213a11.71 11.71 0 0 1 11.562-9.88h7.284c47.147 0 84.064-19.154 94.852-74.55c4.503-23.15 2.173-42.478-9.739-56.054c-3.613-4.112-8.1-7.508-13.327-10.28c-.283 1.79-.59 3.604-.957 5.477"/><path fill="#1f264f" d="M216.952 72.128a90 90 0 0 0-5.818-1.49a110 110 0 0 0-6.177-1.174c-7.408-1.199-15.5-1.765-24.19-1.765h-73.309a11.6 11.6 0 0 0-5.053 1.149a11.68 11.68 0 0 0-6.51 8.74l-15.582 98.798l-.45 2.88c1.025-6.501 6.585-11.296 13.17-11.296h27.444c53.898 0 96.1-21.892 108.428-85.221c.367-1.873.675-3.688.958-5.477q-4.682-2.47-10.14-4.279a83 83 0 0 0-2.77-.865"/></svg></p>
+                                    <div class="with-method with-method2">
+                                        <h2>Paypal</h2>
+                                        <p>user@example.com</p>
+                                    </div>
+                                    <div class="add-button">
+                                        <button class="add-but1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z"/></svg> Add Method</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="payment-history section" id="page-history">
+                        <div class="pay-history-cont">
+                            <h2>Payment History</h2>
+                            <div class="history-header">
+                                <p>Date</p>
+                                <p>Client</p>
+                                <p>Project</p>
+                                <p>Amount</p>
+                                <p>Status</p>
+                            </div>
+                            <div class="payment-tran">
+                                <p>Apr 15,2025</p>
+                                <p>ABC Corporation</p>
+                                <p>Website Redesign</p>
+                                <p>$1,200</p>
+                                <p class="comp">Completed</p>
+                            </div>
+                            <div class="payment-tran">
+                                <p>Apr 20,2025</p>
+                                <p>XYZ Ltd</p>
+                                <p>Mobile App Dev...</p>
+                                <p>$850</p>
+                                <p class="comp">Completed</p>
+                            </div>
+                            <div class="payment-tran">
+                                <p>Apr 5,2025</p>
+                                <p>DEF-Industries</p>
+                                <p>Graphic Design</p>
+                                <p>$1,150</p>
+                                <p class="pend">pending</p>
+                            </div>
+                            <div class="payment-tran">
+                                <p>Apr 5,2025</p>
+                                <p>DEF-Industries</p>
+                                <p>Graphic Design</p>
+                                <p>$1,150</p>
+                                <p class="pend">pending</p>
+                            </div>
+                            <div class="payment-tran">
+                                <p>Apr 10,2025</p>
+                                <p>Smith & Co.</p>
+                                <p>SEO Optimization</p>
+                                <p>$600</p>
+                                <p class="comp">Completed</p>
+                            </div>
+                            <div class="payment-tran">
+                                <p>Apr 10,2025</p>
+                                <p>Smith & Co.</p>
+                                <p>SEO Optimization</p>
+                                <p>$600</p>
+                                <p class="comp">Completed</p>
+                            </div>
+                            <div class="payment-tran">
+                                <p>Apr 5,2025</p>
+                                <p>DEF-Industries</p>
+                                <p>Graphic Design</p>
+                                <p>$1,150</p>
+                                <p class="pend">pending</p>
+                            </div>
+                            <div class="payment-tran">
+                                <p>Apr 5,2025</p>
+                                <p>DEF-Industries</p>
+                                <p>Graphic Design</p>
+                                <p>$1,150</p>
+                                <p class="pend">pending</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--for the review page-->
+            <div class="section" id="review">
+                <div class="content-page-header">
+                    <h2>Reviews & Ratings</h2>
+                    <div class="account-tools">
+                        <div class="search">
+                            <input type="search" placeholder="search here.....">
+                            <p class="search-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11.5a7.5 7.5 0 1 1-15 0a7.5 7.5 0 0 1 15 0m-2.107 5.42l3.08 3.08"/></svg></p>
+                        </div>
+                        <div class="noti">
+                            <p class="noti-bell"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 19v-9a6 6 0 0 1 6-6v0a6 6 0 0 1 6 6v9M6 19h12M6 19H4m14 0h2m-9 3h2"/><circle cx="12" cy="3" r="1"/></g></svg></p>
+                            <p class="noti-dot"></p>
+                        </div>
+                        <div class="account-info">
+                            <p class="profile-image"></p>
+                            <p class="account-name">Thomas</p>
+                            <p class="drop-down"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M16.293 9.293L12 13.586L7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z"/></svg></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-page-details">
+                    <h2>Review History</h2>
+                    <div class="review-dash">
+                        <div class="review-rate">
+                            <div class="rate-num">
+                                <h2>4.8</h2>
+                                <p><svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></svg> <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></svg> <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></svg> <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></svg> <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></svg></p>
+                            </div>
+                            <p>Based on 16 reviews.</p>
+                        </div>
+                        <div class="review-stat">
+                            <div class="r-stat">
+                                <h3>Quality</h3>
+                                <progress min="0" max="100" value="80"></progress>
+                            </div>
+                            <div class="r-stat">
+                                <h3>Communication</h3>
+                                <progress min="0" max="100" value="70"></progress>
+                            </div>
+                            <div class="r-stat">
+                                <h3>Budget</h3>
+                                <progress min="0" max="100" value="53"></progress>
+                            </div>
+                            <div class="r-stat">
+                                <h3>Timelines</h3>
+                                <progress min="0" max="100" value="40"></progress>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rev-client-cont">
+                        <div class="r-client">
+                            <div class="rv-info">
+                                <p class="rv-image"></p>
+                                <div class="r-client-detail">
+                                    <h3>Sarah Johnson</h3>
+                                    <p>Oct 15</p>
+                                    <p>Excellent work! Delivered high quality results on time. Highly Recommended.</p>
+                                </div>
+                            </div>
+                            <div class="c-rate">
+                                <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></svg> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></svg> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></svg> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></svg> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></svg></p>
+                                <button class="r-but">Respond</button>
+                            </div>
+                        </div>
+                        <div class="r-client">
+                            <div class="rv-info">
+                                <p class="rv-image rv-image2"></p>
+                                <div class="r-client-detail">
+                                    <h3>James Smith</h3>
+                                    <p>Sep 20</p>
+                                    <p>Great communication and solid performance, would hire again. Keep up the good work.</p>
+                                </div>
+                            </div>
+                            <div class="c-rate">
+                                <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></svg> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></svg> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></svg> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></svg></p>
+                                <button class="r-but">Respond</button>
+                            </div>
+                        </div>
+                        <div class="r-client">
+                            <div class="rv-info">
+                                <p class="rv-image rv-image3"></p>
+                                <div class="r-client-detail">
+                                    <h3>Emily Davis</h3>
+                                    <p>Aug 5</p>
+                                    <p>Very professional and reliable/ Met all project deadlines and did a good job.</p>
+                                </div>
+                            </div>
+                            <div class="c-rate">
+                                <p><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></svg> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></svg> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></svg> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path fill="currentColor" d="m12 17.275l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15z"/></svg></p>
+                                <button class="r-but">Respond</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--for the help page-->
+            <div class="section" id="help">
+                <div class="content-page-header">
+                    <h2>Help & Support</h2>
+                    <div class="account-tools">
+                        <div class="help-search">
+                            <p class="search-icon2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11.5a7.5 7.5 0 1 1-15 0a7.5 7.5 0 0 1 15 0m-2.107 5.42l3.08 3.08"/></svg></p>
+                            <input type="search" placeholder="search for help topics">
+                        </div>
+                    </div>
+                </div>
+                <div class="content-page-details">
+                    <div class="help-header">
+                        <h2>FAQs</h2>
+                    </div>
+                    <div class="help-body">
+                        <details>
+                            <summary>How do I complete my profile</summary>
+                            <p>After registering, add your profile photo, professional title, skills and work samples. The more details you add, the easier it is for clients to trust and hire you.</p>
+                        </details>
+                        <details>
+                            <summary>Can I update my profile later?</summary>
+                            <p>Yes, you can edit your profile at any time under Settings > Edit Profile.</p>
+                        </details>
+                        <details>
+                            <summary>Can I add certifications or licenses</summary>
+                            <p>Yes, you can upload certificates to increase your credibility with clients.</p>
+                        </details>
+                    </div>
+                    <div class="help-footer">
+                        <h2>Popular Topics</h2>
+                        <div class="help-topic-cont">
+                            <div class="help-topic-item">
+                                <p><a href="#">Posting Jobs</a></p>
+                                <p><a href="#">Payment plan</a></p>
+                                <p><a href="#">Managing Projects</a></p>
+                            </div>
+                            <div class="help-topic-item">
+                                <p><a href="#">Hiring workers</a></p>
+                                <p><a href="#">Qualified Workers</a></p>
+                                <p><a href="#">Recent Projects</a></p>
+                            </div>
+                            <div class="help-topic-item help-topic-item3">
+                                <p><a href="#">Ratings</a></p>
+                                <p><a href="#">Reviews</a></p>
+                                <p><a href="#">Contact Support</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--for the logout page-->
+            <div class="section" id="logout">
+                <div class="content-page-header">
+                    <h2>Logout</h2>
+                    <div class="account-tools">
+                        <div class="search">
+                            <input type="search" placeholder="search here.....">
+                            <p class="search-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11.5a7.5 7.5 0 1 1-15 0a7.5 7.5 0 0 1 15 0m-2.107 5.42l3.08 3.08"/></svg></p>
+                        </div>
+                        <div class="noti">
+                            <p class="noti-bell"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 19v-9a6 6 0 0 1 6-6v0a6 6 0 0 1 6 6v9M6 19h12M6 19H4m14 0h2m-9 3h2"/><circle cx="12" cy="3" r="1"/></g></svg></p>
+                            <p class="noti-dot"></p>
+                        </div>
+                        <div class="account-info">
+                            <p class="profile-image"></p>
+                            <p class="account-name">Thomas</p>
+                            <p class="drop-down"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M16.293 9.293L12 13.586L7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z"/></svg></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-page-details logout-page">
+                    <div class="logout-cont">
+                        <h2>Are you sure you want to log out?</h2>
+                        <div class="logout-buttons">
+                            <button class="log-but1">Yes, Log Out</button>
+                            <button class="log-but2">Cancel</button>
+                        </div>
+                        <p class="log-memo">You will be redirected to the Log In page.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../scripts/media-url.js"></script>
+    <script src="../scripts/auth.js"></script>
+    <script src="../scripts/dashboard.js"></script>
+    <script src="../scripts/worker-profile.js"></script>
+    <script src="../scripts/worker-jobs.js"></script>
+    <script src="../scripts/projects.js"></script>
+    <script src="../scripts/worker-payments.js"></script>
+    <script src="../scripts/ui-user.js"></script>
+    
+    <!-- Global Modals (moved here so they are not inside any hidden container) -->
+    <div id="modal-backdrop" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:9998;"></div>
+    <div id="modal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#fff; border-radius:8px; width:90%; max-width:420px; box-shadow:0 10px 30px rgba(0,0,0,0.2); z-index:9999;">
+        <div style="padding:16px 18px; border-bottom:1px solid #eee; display:flex; justify-content:space-between; align-items:center;">
+            <h3 id="modal-title" style="margin:0; font-size:16px;">Modal</h3>
+            <button id="modal-close" type="button" style="border:none; background:transparent; font-size:18px; cursor:pointer">×</button>
+        </div>
+        <div id="modal-body" style="padding:14px 18px;">
+            <label id="modal-label" for="modal-input" style="display:block; font-size:13px; color:#333; margin-bottom:6px;">Input</label>
+            <input id="modal-input" type="text" style="width:100%; padding:8px 10px; border:1px solid #cbd5e1; border-radius:6px; outline:none;" />
+        </div>
+        <div style="padding:12px 18px; display:flex; gap:10px; justify-content:flex-end; border-top:1px solid #eee;">
+            <button id="modal-cancel" type="button" class="create-but" style="background:#eee; color:#111;">Cancel</button>
+            <button id="modal-ok" type="button" class="create-but">OK</button>
+        </div>
+    </div>
+
+    <div id="skill-modal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#fff; border-radius:8px; width:90%; max-width:520px; box-shadow:0 10px 30px rgba(0,0,0,0.2); z-index:10000;">
+        <div style="padding:16px 18px; border-bottom:1px solid #eee; display:flex; justify-content:space-between; align-items:center;">
+            <h3 style="margin:0; font-size:16px;">Add Skills</h3>
+            <button data-close="skill-modal" type="button" style="border:none; background:transparent; font-size:18px; cursor:pointer">×</button>
+        </div>
+        <div style="padding:14px 18px; display:grid; gap:10px;">
+            <label for="skill-input" style="font-size:13px; color:#333;">Enter skills (comma-separated)</label>
+            <textarea id="skill-input" rows="3" placeholder="plumbing, tiling" style="width:100%; padding:8px 10px; border:1px solid #cbd5e1; border-radius:6px; outline:none;"></textarea>
+        </div>
+        <div style="padding:12px 18px; display:flex; gap:10px; justify-content:flex-end; border-top:1px solid #eee;">
+            <button data-cancel="skill-modal" type="button" class="create-but" style="background:#eee; color:#111;">Cancel</button>
+            <button id="skill-save" type="button" class="create-but">Save</button>
+        </div>
+    </div>
+
+    <div id="cert-modal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#fff; border-radius:8px; width:90%; max-width:520px; box-shadow:0 10px 30px rgba(0,0,0,0.2); z-index:10000;">
+        <div style="padding:16px 18px; border-bottom:1px solid #eee; display:flex; justify-content:space-between; align-items:center;">
+            <h3 style="margin:0; font-size:16px;">Add Certification</h3>
+            <button data-close="cert-modal" type="button" style="border:none; background:transparent; font-size:18px; cursor:pointer">×</button>
+        </div>
+        <div style="padding:14px 18px; display:grid; gap:12px;">
+            <div>
+                <label for="cert-label" style="display:block; font-size:13px; color:#333; margin-bottom:6px;">Label</label>
+                <input id="cert-label" type="text" placeholder="Trade License" style="width:100%; padding:8px 10px; border:1px solid #cbd5e1; border-radius:6px; outline:none;" />
+            </div>
+            <div>
+                <label for="cert-file" style="display:block; font-size:13px; color:#333; margin-bottom:6px;">File</label>
+                <input id="cert-file" type="file" accept=".pdf,.jpg,.jpeg,.png,.heic,.heif,.webp,.gif" />
+            </div>
+        </div>
+        <div style="padding:12px 18px; display:flex; gap:10px; justify-content:flex-end; border-top:1px solid #eee;">
+            <button data-cancel="cert-modal" type="button" class="create-but" style="background:#eee; color:#111;">Cancel</button>
+            <button id="cert-save" type="button" class="create-but">Save</button>
+        </div>
+    </div>
+
+    <div id="portfolio-modal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#fff; border-radius:8px; width:90%; max-width:520px; box-shadow:0 10px 30px rgba(0,0,0,0.2); z-index:10000;">
+        <div style="padding:16px 18px; border-bottom:1px solid #eee; display:flex; justify-content:space-between; align-items:center;">
+            <h3 style="margin:0; font-size:16px;">Add Portfolio Sample</h3>
+            <button data-close="portfolio-modal" type="button" style="border:none; background:transparent; font-size:18px; cursor:pointer">×</button>
+        </div>
+        <div style="padding:14px 18px; display:grid; gap:12px;">
+            <div>
+                <label for="portfolio-type" style="display:block; font-size:13px; color:#333; margin-bottom:6px;">Media Type</label>
+                <select id="portfolio-type" style="width:100%; padding:8px 10px; border:1px solid #cbd5e1; border-radius:6px; outline:none;">
+                    <option value="image" selected>Image</option>
+                    <option value="file">Other (PDF/Doc)</option>
+                </select>
+            </div>
+            <div>
+                <label for="portfolio-file" style="display:block; font-size:13px; color:#333; margin-bottom:6px;">File</label>
+                <input id="portfolio-file" type="file" accept="image/*,.pdf,.jpg,.jpeg,.png,.heic,.heif,.webp,.gif" />
+            </div>
+            <div>
+                <label for="portfolio-caption" style="display:block; font-size:13px; color:#333; margin-bottom:6px;">Caption (optional)</label>
+                <input id="portfolio-caption" type="text" placeholder="Kitchen sink fix" style="width:100%; padding:8px 10px; border:1px solid #cbd5e1; border-radius:6px; outline:none;" />
+            </div>
+        </div>
+        <div style="padding:12px 18px; display:flex; gap:10px; justify-content:flex-end; border-top:1px solid #eee;">
+            <button data-cancel="portfolio-modal" type="button" class="create-but" style="background:#eee; color:#111;">Cancel</button>
+            <button id="portfolio-save" type="button" class="create-but">Save</button>
+        </div>
+    </div>
+</body>
+</html>

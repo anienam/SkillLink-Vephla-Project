@@ -1,0 +1,147 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #fff;
+}
+
+/* Slider */
+.slider {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+.slide {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+.slide.active {
+  display: flex;
+}
+
+/* Top bar */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-weight: bold;
+  color: #0a9b59;
+  font-size: 1.2rem;
+}
+
+.skip-btn {
+  border: 1px solid #0a9b59;
+  background: none;
+  color: #0a9b59;
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Content */
+.content {
+  text-align: center;
+  margin: 2rem auto;
+  max-width: 800px;
+}
+
+.content h1 {
+  color: #0a9b59;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.content p {
+  color: #333;
+  line-height: 1.5;
+  margin-bottom: 2rem;
+}
+
+.content img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+/* Grid for last slide */
+.two-col {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.card {
+  flex: 1 1 300px;
+  text-align: center;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.card h3 {
+  color: #0a9b59;
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  color: #333;
+}
+
+/* Dots */
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 2rem 0;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #cceedd;
+}
+
+.dot.active {
+  background: #0a9b59;
+}
+
+/* Continue button */
+.continue-btn {
+  background: #0a9b59;
+  color: #fff;
+  padding: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .content h1 {
+    font-size: 1.5rem;
+  }
+
+  .two-col {
+    flex-direction: column;
+    align-items: center;
+  }
+}

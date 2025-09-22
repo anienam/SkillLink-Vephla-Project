@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SkillLink Onboarding</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="slider">
+      <!-- Slide 1 -->
+      <div class="slide active">
+        <div class="top-bar">
+          <div class="logo">
+            <img src="../Images/Logo/Frame 228.png" alt="SkillLink Logo" />
+          </div>
+          <button class="skip-btn" onclick="skip()">Skip</button>
+        </div>
+
+        <div class="content">
+          <h1>Get Discovered for Your Skills</h1>
+          <p>
+            No more waiting for word-of-mouth referrals. With SkillLink, your
+            talent is visible to the right people, at the right time. Build a
+            professional presence that works for you 24/7, even while you sleep.
+          </p>
+          <img src="../Images/LogPage/Frame 458.png" alt="Handshake" />
+        </div>
+
+        <div class="dots">
+          <div class="dot active"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+
+        <button class="continue-btn" onclick="nextSlide()">Continue</button>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="slide">
+        <div class="top-bar">
+          <div class="logo">
+            <img src="../Images/Logo/Frame 228.png" alt="SkillLink Logo" />
+          </div>
+          <button class="skip-btn" onclick="skip()">Skip</button>
+        </div>
+
+        <div class="content">
+          <h1>Safe, Simple and Reliable</h1>
+          <p>
+            From posting jobs to secure payments, everything happens in one
+            trusted place. No stress, no risk.
+          </p>
+          <img
+            src="../Images/LogPage/Frame 463.png"
+            alt="Two workers smiling"
+          />
+        </div>
+
+        <div class="dots">
+          <div class="dot active"></div>
+          <div class="dot active"></div>
+          <div class="dot"></div>
+        </div>
+
+        <button class="continue-btn" onclick="nextSlide()">Continue</button>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="slide">
+        <div class="top-bar">
+          <div class="logo">
+            <img src="../Images/Logo/Frame 228.png" alt="SkillLink Logo" />
+          </div>
+          <button class="skip-btn" onclick="skip()">Skip</button>
+        </div>
+
+        <div class="content">
+          <h1>What’s In It for You</h1>
+          <div class="two-col">
+            <div class="card">
+              <img src="../Images/LogPage/Frame 468.png" alt="Client working" />
+              <h3>For Clients</h3>
+              <p>Hire the right expert, get quality work delivered on time.</p>
+            </div>
+            <div class="card">
+              <img src="../Images/LogPage/Frame 469.png" alt="Skilled worker" />
+              <h3>For Skilledworker</h3>
+              <p>Showcase your skills, find clients, and grow your business.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dots">
+          <div class="dot active"></div>
+          <div class="dot active"></div>
+          <div class="dot active"></div>
+        </div>
+
+        <button class="continue-btn" onclick="nextSlide()">Continue</button>
+      </div>
+    </div>
+
+    <script>
+      let currentSlide = 0;
+      const slides = document.querySelectorAll(".slide");
+      const dots = document.querySelectorAll(".dot");
+
+      function showSlide(index) {
+        slides.forEach((slide, i) => {
+          slide.classList.toggle("active", i === index);
+        });
+        dots.forEach((dot, i) => {
+          dot.classList.toggle("active", i === index);
+        });
+        currentSlide = index;
+      }
+
+      function nextSlide() {
+        if (currentSlide < slides.length - 1) {
+          showSlide(currentSlide + 1);
+        } else {
+          // Redirect when finished
+          window.location.href = "dashboard.html";
+        }
+      }
+
+      function skip() {
+        window.location.href = "dashboard.html";
+      }
+    </script>
+  </body>
+</html>
