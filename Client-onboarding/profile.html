@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SkillLink - Profile Setup</title>
     <link rel="stylesheet" href="profile.css" />
+    <link rel="icon" type="image/x-icon" href="../Images/Logo/Logo.png" />
   </head>
   <body>
     <div class="container">
@@ -18,15 +19,16 @@
 
       <div class="form-section">
         <!-- Left side: form -->
-        <form class="form">
+        <form class="form" id="client-profile-form" onsubmit="return false;">
           <label>
             Full Name
-            <input type="text" placeholder="Enter your full name" required />
+            <input id="full-name" type="text" placeholder="Enter your full name" required />
           </label>
 
           <label>
             Location
             <input
+              id="location"
               type="text"
               placeholder="City, State/Region, Country"
               required
@@ -36,27 +38,72 @@
           <label>
             Contact Preference
             <input
+              id="contact-pref"
               type="text"
               placeholder="Phone, email, in-app chat"
               required
             />
           </label>
+
+          <!-- Trust / Verification Docs Section -->
+          <div class="trust-block">
+            <h3>Verification Documents</h3>
+            <p class="trust-hint">Add at least one company verification document (e.g., CAC Certificate).</p>
+            <div class="trust-msg" id="trust-msg" hidden></div>
+            <div class="doc-field">
+              <label for="doc-label">Document Label</label>
+              <input id="doc-label" type="text" placeholder="CAC Certificate" />
+            </div>
+            <div class="doc-field inline">
+              <input id="doc-file" type="file" accept="image/*,.pdf" />
+              <button type="button" id="add-doc" class="mini-btn">Add</button>
+            </div>
+            <div id="doc-list" class="doc-list small"></div>
+          </div>
+          <input type="file" id="profile-image-input" accept="image/*" hidden />
         </form>
 
         <!-- Right side: profile picture -->
-        <div class="profile-upload">
+        <div class="profile-upload" id="profile-upload">
           <div class="profile-pic">
-            <img src="../Images/LogPage/Ellipse 13.png" alt="Profile Photo" />
-            <button class="edit-btn">✏️</button>
+            <img id="profile-image" src="../Images/LogPage/Ellipse 13.png" alt="Profile Photo" />
+            <button type="button" class="edit-btn" id="profile-edit-btn">✏️</button>
           </div>
-          <button class="upload-btn">⬆ Upload/Change</button>
+          <button type="button" class="upload-btn" id="upload-trigger">⬆ Upload/Change</button>
         </div>
 
         <!-- Continue Button -->
         <div class="but-cont">
-          <button class="btn">Continue</button>
+          <button class="btn" id="save-profile">Continue</button>
         </div>
       </div>
     </div>
+    <script>
+    (function(){
+      // Basic config
+      var API_BASE = (function(){ if (typeof window.API_BASE==='string') return window.API_BASE; var m=document.querySelector('meta[name="sl-api-base"]'); return (m&&m.content)||'https://skill-link-gg2c.onrender.com/api'; })();
+      function getToken(){ try { return (window.getToken && window.getToken()) || sessionStorage.getItem('sl_token') || localStorage.getItem('sl_token'); } catch(_){ return null; } }
+      function msg(t, type){ var el=document.getElementById('trust-msg'); if(!el) return; el.textContent=t||''; el.className='trust-msg '+(type||'info'); el.hidden=!t; }
+      function ensureApi(fn){ if (typeof callApi==='function') return fn(callApi); return fn(function(path,method,body,useAuth,done){ var h={'Accept':'application/json','Content-Type':'application/json'}; if(useAuth){ var tk=getToken(); if(tk) h['Authorization']='Bearer '+tk; } fetch(API_BASE+path,{ method:method||'GET', headers:h, body: body?JSON.stringify(body):undefined }).then(function(r){ return r.json().catch(function(){return {};}).then(function(j){ return { ok:r.ok, data:j, statusText:r.statusText }; }); }).then(function(out){ if(!out.ok) return done(new Error((out.data&&(out.data.message||out.data.error))||out.statusText||'Request failed')); done(null,out.data); }).catch(done); }); }
+      var docs=[]; // { label, fileUrl }
+      function renderDocs(){ var wrap=document.getElementById('doc-list'); if(!wrap) return; wrap.innerHTML=''; if(!docs.length){ var em=document.createElement('div'); em.className='empty'; em.textContent='No documents yet'; wrap.appendChild(em); return; } docs.forEach(function(d,i){ var row=document.createElement('div'); row.className='doc-row'; row.innerHTML='<span>'+ (d.label||'Document') +'</span><a class="view" target="_blank" href="'+ d.abs +'">View</a><button type="button" data-i="'+i+'" class="remove">Remove</button>'; wrap.appendChild(row); }); }
+      document.addEventListener('click', function(e){ if(e.target && e.target.classList.contains('remove')){ var i=parseInt(e.target.getAttribute('data-i'),10); if(!isNaN(i)){ docs.splice(i,1); renderDocs(); } } });
+      function uploadFile(file, cb){ var t=getToken(); if(!t) return cb(new Error('Login required')); var fd=new FormData(); fd.append('file', file); fetch(API_BASE + '/uploads/file',{ method:'POST', headers:{ 'Authorization':'Bearer '+t }, body: fd }).then(function(r){ return r.json().catch(function(){return {};}).then(function(j){ return { ok:r.ok, data:j, statusText:r.statusText }; }); }).then(function(out){ if(!out.ok) throw new Error((out.data&&out.data.message)||out.statusText||'Upload failed'); var f=out.data && (out.data.file||out.data); var rel=f && (f.url||f.absoluteUrl); if(!rel) throw new Error('No file URL'); var abs=(window.SLMedia && SLMedia.resolveUrl)? SLMedia.resolveUrl(rel, f.cloudinaryId): rel; cb(null,{ rel:rel, abs:abs, cloudinaryId:f.cloudinaryId }); }).catch(function(err){ cb(err); }); }
+      document.getElementById('add-doc').addEventListener('click', function(){ var lbl=(document.getElementById('doc-label').value||'').trim()||'Document'; var inp=document.getElementById('doc-file'); var f=inp && inp.files && inp.files[0]; if(!f){ msg('Choose a file first','error'); return; } msg('Uploading…','info'); uploadFile(f, function(err,up){ if(err){ msg(err.message||'Upload failed','error'); return; } docs.push({ label: lbl, fileUrl: up.rel, abs: up.abs }); renderDocs(); msg('Added','success'); try { inp.value=''; } catch(_){ } }); });
+      // Profile image handling (optional now)
+      var profileInput=document.getElementById('profile-image-input'); var profileImg=document.getElementById('profile-image'); function uploadProfileImage(file){ var t=getToken(); if(!t) { return msg('Login required','error'); } var fd=new FormData(); fd.append('image', file); fetch(API_BASE + '/uploads/image',{ method:'POST', headers:{ 'Authorization':'Bearer '+t }, body: fd }).then(function(r){ return r.json().catch(function(){return {};}).then(function(j){ return { ok:r.ok, data:j, statusText:r.statusText }; }); }).then(function(out){ if(!out.ok) throw new Error((out.data&&out.data.message)||out.statusText||'Upload failed'); var f=out.data && (out.data.file||out.data); var rel=f && (f.url||f.absoluteUrl); if(!rel) throw new Error('No image URL'); var abs=(window.SLMedia && SLMedia.resolveUrl)? SLMedia.resolveUrl(rel, f.cloudinaryId): rel; if(profileImg) profileImg.src=abs; // Save to base profile (not trust)
+        ensureApi(function(api){ api('/auth/profile','PATCH',{ employer: { logo: rel } }, true, function(){}); });
+      }).catch(function(err){ msg(err.message||'Image upload failed','error'); }); }
+      document.getElementById('upload-trigger').addEventListener('click', function(){ if(profileInput) profileInput.click(); });
+      document.getElementById('profile-edit-btn').addEventListener('click', function(){ if(profileInput) profileInput.click(); });
+      if(profileInput){ profileInput.addEventListener('change', function(){ var f=profileInput.files && profileInput.files[0]; if(f) uploadProfileImage(f); }); }
+      // Save all
+      document.getElementById('save-profile').addEventListener('click', function(){ var name=(document.getElementById('full-name').value||'').trim(); var loc=(document.getElementById('location').value||'').trim(); var contact=(document.getElementById('contact-pref').value||'').trim(); if(!name || !loc || !contact){ msg('Fill required fields','error'); return; } if(!docs.length){ msg('Add at least one verification document','error'); return; } msg('Saving…','info'); var basePayload={ name: name, employer: { location: loc, contactPreference: contact } }; ensureApi(function(api){ api('/auth/profile','PATCH', basePayload, true, function(err){ if(err){ msg(err.message||'Profile save failed','error'); return; } // then trust docs
+            var trustPayload={ employer: { verificationDocs: docs.map(function(d){ return { label:d.label, fileUrl:d.fileUrl }; }) } }; api('/auth/profile/employer/trust','PATCH', trustPayload, true, function(err2){ if(err2){ msg(err2.message||'Trust save failed','error'); return; } msg('Profile & verification saved','success'); setTimeout(function(){ try { window.location.href='success.html'; } catch(_){ } }, 700); }); }); }); });
+      // (Optional) preload existing user data if getMe available
+      if(typeof getMe==='function'){ getMe(function(err,me){ if(err||!me) return; try { if(me.name) document.getElementById('full-name').value=me.name; var emp=me.employer||{}; if(emp.location) document.getElementById('location').value=emp.location; if(emp.contactPreference) document.getElementById('contact-pref').value=emp.contactPreference; if(emp.logo && profileImg) profileImg.src=(window.SLMedia && SLMedia.resolveUrl)? SLMedia.resolveUrl(emp.logo, emp.cloudinaryId): emp.logo; if(Array.isArray(emp.verificationDocs)){ docs = emp.verificationDocs.map(function(v){ var rel=v.fileUrl||v.url; var abs=(window.SLMedia && SLMedia.resolveUrl)? SLMedia.resolveUrl(rel,v.cloudinaryId): rel; return { label:v.label||'Document', fileUrl: rel, abs: abs }; }); renderDocs(); } } catch(_){ } }); }
+      renderDocs();
+    })();
+    </script>
   </body>
 </html>

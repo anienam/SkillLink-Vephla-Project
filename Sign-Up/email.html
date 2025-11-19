@@ -3,9 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="sl-api-base" content="https://skill-link-gg2c.onrender.com/api" />
+    <meta
+      name="sl-api-base"
+      content="https://skill-link-gg2c.onrender.com/api"
+    />
     <title>Email Verification</title>
     <link rel="stylesheet" href="email.css" />
+    <link rel="icon" type="image/x-icon" href="../Images/Logo/Logo.png" />
   </head>
   <body>
     <div class="container">
@@ -16,7 +20,13 @@
 
       <!-- Right Side: Verification Form -->
       <div class="right">
-  <div class="back-arrow" id="back-to-signin" role="button" tabindex="0" aria-label="Go back">
+        <div
+          class="back-arrow"
+          id="back-to-signin"
+          role="button"
+          tabindex="0"
+          aria-label="Go back"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -49,7 +59,9 @@
           <div id="email-otp-msg" class="msg" hidden></div>
           <div class="actions">
             <button id="email-verify" class="btn">Verify</button>
-            <button id="email-resend" type="button" class="btn secondary">Resend Code</button>
+            <button id="email-resend" type="button" class="btn secondary">
+              Resend Code
+            </button>
           </div>
 
           <div class="info-text">
@@ -59,45 +71,138 @@
           </div>
         </div>
 
-  <div class="alt-option" id="signup-different">Sign up with a different email</div>
-  </div>
+        <div class="alt-option" id="signup-different">
+          Sign up with a different email
+        </div>
+      </div>
     </div>
-  <script src="../scripts/auth.js"></script>
+    <script src="../scripts/auth.js"></script>
     <script>
-      (function(){
-        function msg(t,ty){ var m=document.getElementById('email-otp-msg'); if(!m) return; m.textContent=t||''; m.className='msg '+(ty||'info'); m.hidden=!t; }
-        function code(){ var ins=document.querySelectorAll('.code-inputs input'); var s=''; for(var i=0;i<ins.length;i++){ s+= (ins[i].value||'').trim(); } return s; }
-        function focusNext(e){ var t=e.target; if(t && t.value && t.maxLength==t.value.length){ var inputs=Array.prototype.slice.call(document.querySelectorAll('.code-inputs input')); var idx=inputs.indexOf(t); if(idx>-1 && inputs[idx+1]) inputs[idx+1].focus(); }}
-        var ins = document.querySelectorAll('.code-inputs input'); for (var i=0;i<ins.length;i++){ ins[i].addEventListener('input', focusNext); }
-        var email = sessionStorage.getItem('sl_email') || localStorage.getItem('sl_email');
-        var resendBtn = document.getElementById('email-resend');
-        var verifyBtn = document.getElementById('email-verify');
-        function disable(el, on){ if(!el) return; el.disabled = !!on; }
-        function send(){ if(!email){ msg('Missing email. Go back and sign up again.','error'); return; } disable(resendBtn,true); callApi('/auth/send-otp','POST',{ email: email }, true, function(err){ if(err){ msg(err.message||'Failed to send OTP','error'); disable(resendBtn,false); return; } msg('OTP sent to '+email,'success'); setTimeout(function(){ disable(resendBtn,false); }, 20000); }); }
+      (function () {
+        function msg(t, ty) {
+          var m = document.getElementById("email-otp-msg");
+          if (!m) return;
+          m.textContent = t || "";
+          m.className = "msg " + (ty || "info");
+          m.hidden = !t;
+        }
+        function code() {
+          var ins = document.querySelectorAll(".code-inputs input");
+          var s = "";
+          for (var i = 0; i < ins.length; i++) {
+            s += (ins[i].value || "").trim();
+          }
+          return s;
+        }
+        function focusNext(e) {
+          var t = e.target;
+          if (t && t.value && t.maxLength == t.value.length) {
+            var inputs = Array.prototype.slice.call(
+              document.querySelectorAll(".code-inputs input")
+            );
+            var idx = inputs.indexOf(t);
+            if (idx > -1 && inputs[idx + 1]) inputs[idx + 1].focus();
+          }
+        }
+        var ins = document.querySelectorAll(".code-inputs input");
+        for (var i = 0; i < ins.length; i++) {
+          ins[i].addEventListener("input", focusNext);
+        }
+        var email =
+          sessionStorage.getItem("sl_email") ||
+          localStorage.getItem("sl_email");
+        var resendBtn = document.getElementById("email-resend");
+        var verifyBtn = document.getElementById("email-verify");
+        function disable(el, on) {
+          if (!el) return;
+          el.disabled = !!on;
+        }
+        function send() {
+          if (!email) {
+            msg("Missing email. Go back and sign up again.", "error");
+            return;
+          }
+          disable(resendBtn, true);
+          callApi(
+            "/auth/send-otp",
+            "POST",
+            { email: email },
+            true,
+            function (err) {
+              if (err) {
+                msg(err.message || "Failed to send OTP", "error");
+                disable(resendBtn, false);
+                return;
+              }
+              msg("OTP sent to " + email, "success");
+              setTimeout(function () {
+                disable(resendBtn, false);
+              }, 20000);
+            }
+          );
+        }
         // Auto-send on load
         if (email) send();
-        resendBtn.addEventListener('click', function(){ send(); });
-        verifyBtn.addEventListener('click', function(){
-          var c = code(); if (!email){ msg('Missing email. Please login.','error'); return; } if (!c || c.length<4){ msg('Enter the 4-6 digit code','error'); return; }
-          disable(verifyBtn,true);
-          callApi('/auth/verify-otp','POST',{ email: email, code: c }, true, function(err,data){ if(err){ msg(err.message||'Verification failed','error'); disable(verifyBtn,false); return; }
-            msg('Verified! Redirecting...','success');
-            getMe(function(e,me){ var type = me && (me.accountType||me.role); if(type==='employer' || type==='client') window.location.href='../Client/index.html'; else window.location.href='../Worker/index.html'; });
-          });
+        resendBtn.addEventListener("click", function () {
+          send();
+        });
+        verifyBtn.addEventListener("click", function () {
+          var c = code();
+          if (!email) {
+            msg("Missing email. Please login.", "error");
+            return;
+          }
+          if (!c || c.length < 4) {
+            msg("Enter the 4-6 digit code", "error");
+            return;
+          }
+          disable(verifyBtn, true);
+          callApi(
+            "/auth/verify-otp",
+            "POST",
+            { email: email, code: c },
+            true,
+            function (err, data) {
+              if (err) {
+                msg(err.message || "Verification failed", "error");
+                disable(verifyBtn, false);
+                return;
+              }
+              msg("Verified! Redirecting...", "success");
+              getMe(function (e, me) {
+                var type = me && (me.accountType || me.role);
+                if (type === "employer" || type === "client")
+                  window.location.href = "../Client/index.html";
+                else window.location.href = "../Worker/index.html";
+              });
+            }
+          );
         });
 
         // Back button behavior
-        var backBtn = document.getElementById('back-to-signin');
-        function goBack(){ window.location.href = '../Sign-In/index.html'; }
+        var backBtn = document.getElementById("back-to-signin");
+        function goBack() {
+          window.location.href = "../Sign-In/index.html";
+        }
         if (backBtn) {
-          backBtn.addEventListener('click', goBack);
-          backBtn.addEventListener('keydown', function(e){ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); goBack(); }});
+          backBtn.addEventListener("click", goBack);
+          backBtn.addEventListener("keydown", function (e) {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              goBack();
+            }
+          });
         }
 
         // Sign up with different email
-        var diff = document.getElementById('signup-different');
+        var diff = document.getElementById("signup-different");
         if (diff) {
-          diff.addEventListener('click', function(){ try{ sessionStorage.removeItem('sl_email'); }catch(_){} window.location.href = '../Sign-Up/index.html'; });
+          diff.addEventListener("click", function () {
+            try {
+              sessionStorage.removeItem("sl_email");
+            } catch (_) {}
+            window.location.href = "../Sign-Up/index.html";
+          });
         }
       })();
     </script>

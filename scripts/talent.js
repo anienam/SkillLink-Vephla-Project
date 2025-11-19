@@ -4,25 +4,16 @@
 // Function to get API token from shared auth helpers
 function getApiToken() {
     try {
-        // Prefer the helper from auth.js if available
         if (typeof getToken === 'function') {
             const t = getToken();
             return t ? `Bearer ${t}` : '';
         }
-        // Fallback: check both storages used by auth.js
-        const t = sessionStorage.getItem('sl_token') || localStorage.getItem('sl_token');
-        return t ? `Bearer ${t}` : '';
-    } catch (_) {
         return '';
-    }
+    } catch (_) { return ''; }
 }
 
 // Get API base URL from meta tag, allow local override
 function getApiBase() {
-    try {
-        const override = localStorage.getItem('sl_api_base');
-        if (override) return override;
-    } catch (_) {}
     const metaTag = document.querySelector('meta[name="sl-api-base"]');
     return metaTag ? metaTag.content : 'https://skill-link-gg2c.onrender.com/api';
 }

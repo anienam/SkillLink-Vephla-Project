@@ -7,7 +7,7 @@
     var meta = document.querySelector('meta[name="sl-api-base"]');
     return (meta && meta.content) || 'https://skill-link-gg2c.onrender.com/api';
   }
-  function isAuthed(){ try { return typeof getToken === 'function' ? !!getToken() : !!(localStorage.getItem('sl_token')||sessionStorage.getItem('sl_token')); } catch(e){ return false; } }
+  function isAuthed(){ try { return typeof getToken === 'function' ? !!getToken() : false; } catch(e){ return false; } }
   function guardAuth(){ if(!isAuthed()){ setMsg('Please sign in first. Redirecting…','error'); setTimeout(function(){ window.location.href = '../Sign-In/index.html'; }, 900); return false; } return true; }
   function setMsg(text,type){ var el = $('#jobs-inline-msg'); if(!el){ el = document.createElement('div'); el.id='jobs-inline-msg'; el.className='msg'; var hdr = $('#job .content-page-details'); if(hdr){ hdr.insertBefore(el, hdr.firstChild); } }
     el.textContent = text||''; el.className = 'msg ' + (type||'info'); el.hidden = !text; }
@@ -20,7 +20,7 @@
     if (typeof callApi === 'function') return callApi(path, method, body, !!auth, cb);
     var url = apiBase() + path;
     var headers = { 'Content-Type':'application/json' };
-    try{ if(auth){ var t = (typeof getToken==='function')?getToken(): (localStorage.getItem('sl_token')||sessionStorage.getItem('sl_token')); if(t) headers['Authorization'] = 'Bearer '+t; } }catch(_){ }
+  try{ if(auth){ var t = (typeof getToken==='function')?getToken(): null; if(t) headers['Authorization'] = 'Bearer '+t; } }catch(_){ }
     fetch(url, { method: method||'GET', headers: headers, body: body?JSON.stringify(body):undefined })
       .then(function(res){ if(!res.ok) throw new Error('HTTP '+res.status); return res.json(); })
       .then(function(data){ cb && cb(null, data); })

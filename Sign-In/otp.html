@@ -3,9 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="sl-api-base" content="https://skill-link-gg2c.onrender.com/api" />
+    <meta
+      name="sl-api-base"
+      content="https://skill-link-gg2c.onrender.com/api"
+    />
     <title>OTP Verification</title>
     <link rel="stylesheet" href="otp.css" />
+    <link rel="icon" type="image/x-icon" href="../Images/Logo/Logo.png" />
   </head>
   <body>
     <div class="container">
@@ -35,62 +39,104 @@
           You can resend code <span class="timer">55s</span>
         </p>
 
-  <div id="otp-msg" class="msg" hidden></div>
-  <button id="otp-continue" class="btn">Continue</button>
+        <div id="otp-msg" class="msg" hidden></div>
+        <button id="otp-continue" class="btn">Continue</button>
       </div>
 
       <!-- Right side -->
-      <div class="image-side">
-        
-      </div>
+      <div class="image-side"></div>
     </div>
     <script src="../scripts/auth.js"></script>
     <script>
-      (function(){
-        function getCode(){
-          var inputs = document.querySelectorAll('.otp-inputs input');
-          var code=''; for (var i=0;i<inputs.length;i++){ code += (inputs[i].value||'').trim(); }
+      (function () {
+        function getCode() {
+          var inputs = document.querySelectorAll(".otp-inputs input");
+          var code = "";
+          for (var i = 0; i < inputs.length; i++) {
+            code += (inputs[i].value || "").trim();
+          }
           return code;
         }
-        function focusNext(e){
-          var t=e.target; if (t && t.value && t.maxLength==t.value.length){
-            var inputs = Array.prototype.slice.call(document.querySelectorAll('.otp-inputs input'));
-            var idx = inputs.indexOf(t); if (idx>-1 && inputs[idx+1]) inputs[idx+1].focus();
+        function focusNext(e) {
+          var t = e.target;
+          if (t && t.value && t.maxLength == t.value.length) {
+            var inputs = Array.prototype.slice.call(
+              document.querySelectorAll(".otp-inputs input")
+            );
+            var idx = inputs.indexOf(t);
+            if (idx > -1 && inputs[idx + 1]) inputs[idx + 1].focus();
           }
         }
-        var ins = document.querySelectorAll('.otp-inputs input');
-        for (var i=0;i<ins.length;i++){ ins[i].addEventListener('input', focusNext); }
-
-        function showMsg(t,ty){
-          var m = document.getElementById('otp-msg'); if(!m) return; m.textContent=t||''; m.className='msg '+(ty||'info'); m.hidden=!t;
+        var ins = document.querySelectorAll(".otp-inputs input");
+        for (var i = 0; i < ins.length; i++) {
+          ins[i].addEventListener("input", focusNext);
         }
 
-        function sendOtp(email){
+        function showMsg(t, ty) {
+          var m = document.getElementById("otp-msg");
+          if (!m) return;
+          m.textContent = t || "";
+          m.className = "msg " + (ty || "info");
+          m.hidden = !t;
+        }
+
+        function sendOtp(email) {
           if (!email) return;
-          callApi('/auth/send-otp','POST',{ email: email }, true, function(err){
-            if (err) { showMsg(err.message||'Failed to send OTP','error'); return; }
-            showMsg('OTP sent to '+email,'success');
-          });
+          callApi(
+            "/auth/send-otp",
+            "POST",
+            { email: email },
+            true,
+            function (err) {
+              if (err) {
+                showMsg(err.message || "Failed to send OTP", "error");
+                return;
+              }
+              showMsg("OTP sent to " + email, "success");
+            }
+          );
         }
 
-        var email = sessionStorage.getItem('sl_email') || localStorage.getItem('sl_email');
-        if (email) { sendOtp(email); }
+        var email =
+          sessionStorage.getItem("sl_email") ||
+          localStorage.getItem("sl_email");
+        if (email) {
+          sendOtp(email);
+        }
 
-        document.getElementById('otp-continue').addEventListener('click', function(){
-          var code = getCode();
-          if (!email){ showMsg('Missing email. Please login again.','error'); return; }
-          if (!code || code.length < 4){ showMsg('Enter the 4-6 digit code.','error'); return; }
-          callApi('/auth/verify-otp','POST',{ email: email, code: code }, true, function(err, data){
-            if (err){ showMsg(err.message||'Verification failed','error'); return; }
-            showMsg('Verified! Redirecting...','success');
-            // After verification, fetch user to route
-            getMe(function(e, me){
-              var type = me && (me.accountType||me.role);
-              if (type==='employer' || type==='client') window.location.href='../Client/index.html';
-              else window.location.href='../Worker/index.html';
-            });
+        document
+          .getElementById("otp-continue")
+          .addEventListener("click", function () {
+            var code = getCode();
+            if (!email) {
+              showMsg("Missing email. Please login again.", "error");
+              return;
+            }
+            if (!code || code.length < 4) {
+              showMsg("Enter the 4-6 digit code.", "error");
+              return;
+            }
+            callApi(
+              "/auth/verify-otp",
+              "POST",
+              { email: email, code: code },
+              true,
+              function (err, data) {
+                if (err) {
+                  showMsg(err.message || "Verification failed", "error");
+                  return;
+                }
+                showMsg("Verified! Redirecting...", "success");
+                // After verification, fetch user to route
+                getMe(function (e, me) {
+                  var type = me && (me.accountType || me.role);
+                  if (type === "employer" || type === "client")
+                    window.location.href = "../Client/index.html";
+                  else window.location.href = "../Worker/index.html";
+                });
+              }
+            );
           });
-        });
       })();
     </script>
   </body>

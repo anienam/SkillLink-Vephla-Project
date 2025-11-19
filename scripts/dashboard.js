@@ -804,7 +804,7 @@
     if (!cont || !er || !Array.isArray(er.series)) return;
     cont.innerHTML = '';
     var canvas = document.createElement('canvas');
-    canvas.width = 360; canvas.height = 180;
+    canvas.width = 280; canvas.height = 180;
     cont.appendChild(canvas);
     var ctx = canvas.getContext('2d');
     if (!ctx){
@@ -889,6 +889,76 @@
     // Only run on Client/Worker pages that have dashboard section
     var dash = document.querySelector('.section#dashboard');
     if(!dash) return;
+    // Load current user (simple header/name population) without overengineering
+    (function loadUserHeader(){
+      // prefer existing callApi helper if available
+      var updateUI = function(u){
+        if(!u) return;
+        var displayName = u.name || [u.firstname, u.lastname].filter(Boolean).join(' ') || u.firstname || u.email || '';
+        if(!displayName) return;
+        // Header account name(s)
+        var nameEls = document.querySelectorAll('.content-page-header .account-name');
+        nameEls.forEach(function(el){ el.textContent = displayName; });
+        // Client dashboard greeting (h2)
+        var clientGreet = document.querySelector('.section#dashboard .dashboard-intro h2');
+        if (clientGreet) clientGreet.textContent = 'Welcome, ' + (u.firstname || displayName);
+        // Worker dashboard greeting (h1)
+        var workerGreet = document.querySelector('.section#dashboard .dash-intro h1');
+        if (workerGreet) workerGreet.textContent = 'Welcome, ' + (u.firstname || displayName) + '!';
+
+        // --- Avatar fallback ---
+        function pickAvatarUrl(obj){
+          return obj && (obj.avatarUrl || obj.photo || obj.image || obj.profileImage || obj.profilePic || (obj.employer&&obj.employer.logo));
+        }
+        function initials(name){
+          var parts = (name||'').trim().split(/\s+/).filter(Boolean);
+            if(!parts.length) return '';
+            var first = parts[0].charAt(0).toUpperCase();
+            var second = parts.length>1 ? parts[parts.length-1].charAt(0).toUpperCase() : '';
+            return (first+second).slice(0,2);
+        }
+        function applyLetterAvatar(el, txt){
+          if(!el) return;
+          el.textContent = txt;
+          el.style.background = '#0d9488';
+          el.style.color = '#fff';
+          el.style.display = 'flex';
+          el.style.alignItems = 'center';
+          el.style.justifyContent = 'center';
+          el.style.fontWeight = '600';
+          el.style.fontSize = '14px';
+        }
+        var avatarUrl = pickAvatarUrl(u);
+        var avatarEls = document.querySelectorAll('.content-page-header .profile-image, .dash-prof-image');
+        avatarEls.forEach(function(el){
+          if(avatarUrl){
+            el.style.backgroundImage = 'url("'+avatarUrl+'");';
+            el.style.backgroundSize = 'cover';
+            el.style.backgroundPosition = 'center';
+          } else {
+            el.style.backgroundImage = 'none';
+            applyLetterAvatar(el, initials(displayName));
+          }
+        });
+      };
+      var done = function(err, data){ try { updateUI(data && data.user); } catch(_){ } };
+      try {
+        if (typeof callApi === 'function') {
+          callApi('/auth/me','GET',null,true,done);
+          return;
+        }
+      } catch(_){ }
+      // Fallback simple fetch using meta production base
+      try {
+        var base = (typeof API_BASE !== 'undefined' && API_BASE) || (document.querySelector('meta[name="sl-api-base"]')||{}).content || '';
+        var headers = { 'Accept':'application/json' };
+        if (typeof getToken === 'function'){ var t = getToken(); if (t) headers.Authorization = 'Bearer ' + t; }
+        fetch(base + '/auth/me', { headers: headers })
+          .then(function(r){ return r.json().catch(function(){ return {}; }); })
+          .then(function(j){ done(null,j); })
+          .catch(function(e){ done(e); });
+      } catch(_){ }
+    })();
     wireTab();
   });
 })();

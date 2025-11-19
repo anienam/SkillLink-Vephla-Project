@@ -37,6 +37,7 @@ body > input {
     display: none;
     background-color: var(--white-color);
     border-bottom: 1px solid var(--color-black);
+    z-index: 3000;
 }
 #mobile-menu:checked ~ .mob-section .mob-head .bars .mob-opt {
     display: block;
@@ -128,6 +129,7 @@ header {
     min-height: 100vh;
     width: 240px;
     gap: 35px;
+    overflow-y: auto;
 }
 /* logo styling */
 .logo-section {
@@ -306,6 +308,14 @@ p.account-name {
     cursor: pointer;
     transition: var(--trans);
 }
+.but1, .but2 {
+    text-align: center;
+    text-decoration: none;
+}
+.but1:visited {
+    color: var(--white-color);
+}
+ 
 .but1:hover, .but3:hover, .t-but1:hover, .p-but1:hover, .pay-but1:hover, .rev-but1:hover {
     background-color: var(--color-hov);
     color: var(--white-color);
@@ -315,6 +325,9 @@ p.account-name {
     color: var(--color-green);
     border: 1px solid var(--color-green);
 }
+ .but2:visited {
+    color: var(--color-green);
+ }
 .but2:hover {
     background-color: var(--color-faint);
 }
@@ -844,10 +857,14 @@ p.star-rating {
 .project-cont {
     margin-top: 35px;
     padding: 10px 15px;
-    display: grid;
+    /* display: grid;
     grid-template-columns: 1fr 300px;
-    gap: 20px;
+    gap: 20px; */
 }
+.projects-grid { display: grid; grid-template-columns: 200px 1fr; gap: 10px; align-items: start; }
+@media (max-width: 980px){ .projects-grid { grid-template-columns: 1fr; } }
+.projects-right-grid { display: grid; grid-template-columns: auto 0.3fr; gap: 10px; align-items: start; }
+@media (max-width: 1200px){ .projects-right-grid { grid-template-columns: 1fr !important; } }
 .project-job {
     padding: 20px;
     border-radius: 8px;
@@ -1287,6 +1304,11 @@ p.ang-right {
 .review-container {
     margin-top: 35px;
     padding-inline: 15px;;
+    /* display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 25px; */
+}
+.review-item1 {
     display: grid;
     grid-template-columns: 1fr 350px;
     gap: 25px;
@@ -1917,6 +1939,9 @@ margin-top: 30px;
     width: 40px;
     height: 40px;  
 }
+.review-item1 {
+    grid-template-columns: 1fr;
+}
 }
 
 @media (max-width: 739px) {
@@ -2127,6 +2152,12 @@ p.comp, p.pend {
 .add-but1 {
     width: 100%;
     font-size: 15px;
+}
+.budget-sliders {
+    grid-template-columns: 1fr;
+}
+.budget-inputs {
+    grid-template-columns: 1fr;
 }
 }
 @media (max-width: 380px) {

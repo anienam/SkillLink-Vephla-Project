@@ -20,49 +20,88 @@ function showMessageById(elementId, text, type) {
   el.hidden = !text;
 }
 
-// Token helpers: prefer sessionStorage by default.
-function saveToken(token, remember) {
-  try {
-    // Always put it in sessionStorage
-    sessionStorage.setItem('sl_token', token);
-    // If user opted to stay logged in, also store in localStorage
-    if (remember) {
-      localStorage.setItem('sl_token', token);
-    } else {
-      localStorage.removeItem('sl_token');
-    }
-  } catch (e) {}
+var __SL_MEMORY_TOKEN = null; // primary in-memory token
+var __SL_PERSIST_IN_SESSION = true; // allow sessionStorage (NOT localStorage) for short-lived persistence across page loads until HttpOnly cookie available
+var SESSION_MAX_IDLE_MS = 30 * 60 * 1000; // 30 min inactivity (adjust with backend)
+var SESSION_WARNING_MS = 1 * 60 * 1000;   // warn 1 minute before expiry
+var __sl_lastActivity = Date.now();
+var __sl_warningShown = false;
+var __sl_sessionTimersStarted = false;
+
+function saveToken(token /*, rememberIgnored */) {
+  __SL_MEMORY_TOKEN = token || null;
+  if(__SL_PERSIST_IN_SESSION){
+    try { if(token) sessionStorage.setItem('sl_token_ephemeral', token); else sessionStorage.removeItem('sl_token_ephemeral'); } catch(e){}
+  }
 }
 function getToken() {
-  try {
-    // Read from session first, then fallback to local
-    return (
-      sessionStorage.getItem('sl_token') ||
-      localStorage.getItem('sl_token')
-    );
-  } catch (e) {
-    return null;
+  if(!__SL_MEMORY_TOKEN && __SL_PERSIST_IN_SESSION){
+    try { var st = sessionStorage.getItem('sl_token_ephemeral'); if(st) __SL_MEMORY_TOKEN = st; } catch(e){}
+  }
+  return __SL_MEMORY_TOKEN; }
+function clearToken() { __SL_MEMORY_TOKEN = null; try { sessionStorage.removeItem('sl_token_ephemeral'); } catch(e){} }
+
+// Lightweight activity tracking & timeout warning (UI minimal, no external deps)
+function __sl_markActivity(){
+  __sl_lastActivity = Date.now();
+  if(__sl_warningShown){
+    // user interacted after warning -> hide banner
+    var b = document.getElementById('session-expiry-banner');
+    if(b) b.remove();
+    __sl_warningShown = false;
   }
 }
-function clearToken() {
-  try {
-    sessionStorage.removeItem('sl_token');
-    localStorage.removeItem('sl_token');
-  sessionStorage.removeItem('sl_email');
-  localStorage.removeItem('sl_email');
-  } catch (e) {}
+['click','keydown','mousemove','scroll','touchstart'].forEach(function(ev){
+  document.addEventListener(ev, __sl_markActivity, { passive:true });
+});
+
+function __sl_renderWarning(){
+  if(document.getElementById('session-expiry-banner')) return;
+  var bar = document.createElement('div');
+  bar.id = 'session-expiry-banner';
+  bar.setAttribute('role','alert');
+  bar.style.cssText = 'position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#222;color:#fff;padding:10px 16px;font:14px/1.4 system-ui,Arial,sans-serif;display:flex;gap:12px;align-items:center;justify-content:space-between;';
+  bar.innerHTML = '<span>Your session will expire soon due to inactivity.</span>'+
+                  '<button id="session-stay-btn" style="background:#0fa674;color:#fff;border:none;padding:6px 12px;cursor:pointer;font:inherit;border-radius:4px;">Stay Signed In</button>';
+  document.body.appendChild(bar);
+  var stay = document.getElementById('session-stay-btn');
+  if(stay){ stay.addEventListener('click', function(){ __sl_markActivity(); }); }
+  __sl_warningShown = true;
 }
 
+function __sl_sessionLoop(){
+  var now = Date.now();
+  var idle = now - __sl_lastActivity;
+  var remaining = SESSION_MAX_IDLE_MS - idle;
+  if(remaining <= 0){
+    // Expired
+    clearToken();
+    try { logout(); } catch(e){}
+    window.location.href = '../Sign-In/index.html';
+    return; // stop loop after redirect
+  }
+  if(remaining <= SESSION_WARNING_MS && !__sl_warningShown){
+    __sl_renderWarning();
+  }
+  setTimeout(__sl_sessionLoop, 30 * 1000); // check every 30s
+}
+function __sl_startSessionTimers(){
+  if(__sl_sessionTimersStarted) return; __sl_sessionTimersStarted = true;
+  setTimeout(__sl_sessionLoop, 30 * 1000);
+}
+
+
 function callApi(path, method, body, useAuth, done) {
-  var headers = { 'Content-Type': 'application/json' };
+  var headers = { 'Content-Type': 'application/json', 'Accept': 'application/json', 'Cache-Control': 'no-store' };
   if (useAuth) {
     var t = getToken();
-    if (t) headers['Authorization'] = 'Bearer ' + t;
+    if (t) headers['Authorization'] = 'Bearer ' + t; // temporary until backend cookie fully adopted
+    __sl_startSessionTimers(); // begin tracking after first authenticated request
   }
-  headers['Accept'] = 'application/json';
   fetch(API_BASE + path, {
     method: method || 'GET',
     headers: headers,
+    credentials: 'include', // allow backend HttpOnly cookie to flow
     body: body ? JSON.stringify(body) : undefined
   })
     .then(function (res) {
@@ -219,7 +258,8 @@ function setupLogin() {
       var tok = extractToken(data);
       if (tok) saveToken(tok, remember);
       // persist email for OTP page convenience
-      try { sessionStorage.setItem('sl_email', payload.email); } catch (e) {}
+  // (Non-sensitive) convenience only; email kept in sessionStorage for OTP prefill.
+  try { sessionStorage.setItem('sl_email', payload.email); } catch (e) {}
       showMessageById('login-msg', 'Login successful! Redirecting...', 'success');
       setTimeout(function () {
         var accType = data && data.user ? (data.user.accountType || data.user.role) : null;
@@ -370,6 +410,8 @@ document.addEventListener('DOMContentLoaded', function () {
   setupLogoutUI();
   setupUploadHelper();
   guardProtectedPage();
+  // If backend already set an HttpOnly session cookie, start timers proactively.
+  if(getToken()){ __sl_startSessionTimers(); }
 });
 
 // Expose a tiny API for debugging

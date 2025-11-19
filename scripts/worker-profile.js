@@ -164,7 +164,7 @@
       var f = file.files && file.files[0];
       if(!f){ msg('No file selected','error'); return; }
       msg('Uploading photo…','info');
-      var t = (typeof getToken==='function')? getToken() : (sessionStorage.getItem('sl_token')||localStorage.getItem('sl_token'));
+  var t = (typeof getToken==='function')? getToken() : null;
       if(!t){ msg('Please login again','error'); return; }
       var fd = new FormData();
       fd.append('image', f);
@@ -405,7 +405,7 @@
     if (!f){ msg('Choose a certification file','error'); return; }
     msg('Uploading certification…','info');
     setBusy(btn, true);
-    var t = (typeof getToken==='function')? getToken() : (sessionStorage.getItem('sl_token')||localStorage.getItem('sl_token'));
+  var t = (typeof getToken==='function')? getToken() : null;
     if(!t){ setBusy(btn,false); msg('Please login again','error'); return; }
     var fd = new FormData(); fd.append('file', f);
     fetch(API_BASE + '/uploads/file', { method:'POST', headers:{ 'Authorization':'Bearer '+t }, body: fd })
@@ -440,7 +440,7 @@
     if (!f){ msg('Choose a portfolio file','error'); return; }
     setBusy(btn,true);
     msg('Uploading portfolio…','info');
-    var t = (typeof getToken==='function')? getToken() : (sessionStorage.getItem('sl_token')||localStorage.getItem('sl_token'));
+  var t = (typeof getToken==='function')? getToken() : null;
     if(!t){ setBusy(btn,false); msg('Please login again','error'); return; }
     var fd = new FormData();
     var uploadPath = (type === 'image') ? '/uploads/image' : '/uploads/file';
